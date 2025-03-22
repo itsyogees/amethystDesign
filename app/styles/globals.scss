@@ -1382,7 +1382,7 @@ body.menu-open::after {
         // border: 1px solid #ddd;
 
         .our-speciality-text {
-          h2 { 
+          h2 {
             font-weight: 600;
             font-size: 50px;
             line-height: 100%;
@@ -1390,7 +1390,7 @@ body.menu-open::after {
             margin-bottom: 1rem;
           }
 
-          p { 
+          p {
             font-weight: 400;
             font-size: 1.2rem;
             line-height: 1.5;
@@ -2332,7 +2332,7 @@ body.menu-open::after {
 
         .tabPrice {
           display: flex;
-           
+
           justify-content: center;
           gap: 0.5rem;
           margin: 0.5rem;
@@ -3092,7 +3092,7 @@ body.menu-open::after {
         .templatesFilter {
           padding: 1rem 0;
           border-radius: 10px;
-
+          margin-bottom: 1rem;
           .filterinput {
             width: 100%;
             border: 1px solid #a66b4f;
@@ -3120,7 +3120,7 @@ body.menu-open::after {
           }
 
           position: fixed;
-          top: 55px ;
+          top: 55px;
           left: -100%;
           width: 75%;
           max-width: 300px;
@@ -3454,7 +3454,7 @@ body.menu-open::after {
                   font-size: 0.8rem;
                 }
               }
-              span{
+              span {
                 margin: 1rem 0;
                 color: rgba(153, 153, 153, 1);
               }
@@ -3463,7 +3463,6 @@ body.menu-open::after {
                 justify-content: center;
                 gap: 0.5rem;
                 margin: 1rem 0;
-                 
 
                 p {
                   margin: 0;
@@ -5574,8 +5573,8 @@ body.menu-open::after {
         gap: 0.5rem;
         justify-content: center;
         img {
-          width: 100px;
-          height: 100px;
+          width: 120px;
+          height: 120px;
           object-fit: cover;
           cursor: pointer;
           border: 2px solid transparent;
@@ -5596,7 +5595,7 @@ body.menu-open::after {
         align-content: center;
         img {
           width: 100%;
-          height: 550px;
+          height: 650px;
           object-fit: cover;
           @media (max-width: 768px) {
             height: 400px;
@@ -5738,24 +5737,67 @@ body.menu-open::after {
       }
 
       .viewDetails-shopinfo {
-        margin-top: 1.5rem;
-
+        margin-top: 1rem;
+        border-bottom: 1px solid #e0e0e0; 
+        overflow: hidden;
+        transition: all 0.3s ease;
+      
         .shopinfo-head {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 0.5rem; 
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+      
+          &:hover {
+            background-color: #f0f0f0;
+          }
+      
           p {
             font-size: 1rem;
             color: #333;
-            margin-bottom: 0.5rem;
+            margin: 0;
+            font-weight: 500;
+          }
+      
+          span {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #555;
+            transition: transform 0.3s ease;
           }
         }
-
+      
         ul {
           list-style: none;
-          padding: 0;
-
+          padding: 0 1rem;
+          margin: 0;
+          max-height: 0;
+          overflow: hidden;
+          transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+      
           li {
             font-size: 0.9rem;
             color: #777;
             margin-bottom: 0.5rem;
+            line-height: 1.5;
+      
+            &:last-child {
+              margin-bottom: 0;
+            }
+          }
+        }
+      
+        // When the list is visible
+        &.visible {
+          ul {
+            max-height: 200px; // Adjust based on your content height
+            padding: 1rem;
+          }
+      
+          .shopinfo-head span {
+            transform: rotate(180deg); // Rotate the minus icon for a smooth effect
           }
         }
       }

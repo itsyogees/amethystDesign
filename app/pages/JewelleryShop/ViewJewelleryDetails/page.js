@@ -3,9 +3,14 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { LuPlus } from "react-icons/lu";
+import { LuMinus } from "react-icons/lu";
 import { IoCartOutline } from "react-icons/io5";
 const ViewJewelleryDetails = () => {
   const router = useRouter();
+  const [isShippingInfoVisible, setIsShippingInfoVisible] = useState(false);
+  const [isCouponVisible, setIsCouponVisible] = useState(false);
+  const [isProductDetailsVisible, setIsProductDetailsVisible] = useState(false);
   const handleCardClick = () => {
     router.push("/pages/Cart");
   };
@@ -33,6 +38,17 @@ const ViewJewelleryDetails = () => {
     }
   };
 
+  const toggleShippingInfo = () => {
+    setIsShippingInfoVisible((prev) => !prev);
+  };
+
+  const toggleCoupon = () => {
+    setIsCouponVisible((prev) => !prev);
+  };
+
+  const toggleProductDetails = () => {
+    setIsProductDetailsVisible((prev) => !prev);
+  };
   useEffect(() => {
     const interval = setInterval(() => {
       const newImages = [...slideImages.slice(1), slideImages[0]];
@@ -102,15 +118,58 @@ const ViewJewelleryDetails = () => {
             <button onClick={handleCardClick}>Add To Cart</button>
             <button>BUY IT NOW</button>
           </div>
-          <div className="viewDetails-shopinfo">
-            <div className="shopinfo-head">
-              <p>Shipping Info</p>
-            </div>
-            <ul>
-              <li>This product cannot be returned or exchanged</li>
-              <li>To be shipped In 15-20 working days</li>
-            </ul>
-          </div>
+          <div
+        className={`viewDetails-shopinfo ${
+          isShippingInfoVisible ? "visible" : ""
+        }`}
+      >
+        <div className="shopinfo-head" onClick={toggleShippingInfo}>
+          <p>Shipping Info</p>
+          <span>{isShippingInfoVisible ? <LuMinus /> : <LuPlus />}</span>
+        </div>
+        <ul>
+          <li>This product cannot be returned or exchanged.</li>
+          <li>Free shipping on all orders above $50.</li>
+          <li>Estimated delivery time: 7-10 business days.</li>
+        </ul>
+      </div>
+
+      {/* Coupon Section */}
+      <div
+        className={`viewDetails-shopinfo ${isCouponVisible ? "visible" : ""}`}
+      >
+        <div className="shopinfo-head" onClick={toggleCoupon}>
+          <p>Coupon</p>
+          <span>{isCouponVisible ? <LuMinus /> : <LuPlus />}</span>
+        </div>
+        <ul>
+          <li>
+            Use code <strong>JEWEL20</strong> to get 20% off on your first
+            jewelry order.
+          </li>
+          <li>Coupons are applicable only on orders above $100.</li>
+          <li>Valid until December 31, 2023.</li>
+        </ul>
+      </div>
+
+      {/* Product Details Section */}
+      <div
+        className={`viewDetails-shopinfo ${
+          isProductDetailsVisible ? "visible" : ""
+        }`}
+      >
+        <div className="shopinfo-head" onClick={toggleProductDetails}>
+          <p>Product Details</p>
+          <span>{isProductDetailsVisible ? <LuMinus /> : <LuPlus />}</span>
+        </div>
+        <ul>
+          <li>Material: 18K Gold Plated Sterling Silver</li>
+          <li>Gemstone: Genuine Diamond</li>
+          <li>Weight: 5 grams</li>
+          <li>Dimensions: 1.5 cm (length) x 1 cm (width)</li>
+          <li>Care Instructions: Avoid contact with water and chemicals.</li>
+        </ul>
+      </div>
         </div>
       </div>
       <div className="shoppage-might">

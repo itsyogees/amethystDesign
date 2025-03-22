@@ -160,87 +160,85 @@ const Navbar = () => {
                 {/* Categories Section */}
                 <li className="dropdownHeading">Categories</li>
                 <li>
-                  <Link href="/categories/anarkalis">Anarkalis</Link>
+                  <Link href="/pages/ClothShop">Anarkalis</Link>
                 </li>
                 <li>
-                  <Link href="/categories/blouses">Blouses</Link>
-                </li>
-
-                <li>
-                  <Link href="/categories/co-ords">Co-Ords</Link>
-                </li>
-                <li>
-                  <Link href="/categories/dhoti-sets">Dhoti Sets</Link>
-                </li>
-                <li>
-                  <Link href="/categories/dresses">Dresses</Link>
-                </li>
-                <li>
-                  <Link href="/categories/dupatta">Dupatta</Link>
+                  <Link href="/pages/ClothShop">Blouses</Link>
                 </li>
 
                 <li>
-                  <Link href="/categories/jackets">Jackets</Link>
+                  <Link href="/pages/ClothShops">Co-Ords</Link>
+                </li>
+                <li>
+                  <Link href="/pages/ClothShop">Dhoti Sets</Link>
+                </li>
+                <li>
+                  <Link href="/pages/ClothShop">Dresses</Link>
+                </li>
+                <li>
+                  <Link href="/pages/ClothShop">Dupatta</Link>
                 </li>
 
                 <li>
-                  <Link href="/categories/kurtas">Kurtas</Link>
-                </li>
-                <li>
-                  <Link href="/categories/lehengas">Lehengas</Link>
-                </li>
-                <li>
-                  <Link href="/categories/sarees">Sarees</Link>
+                  <Link href="/pages/ClothShop">Jackets</Link>
                 </li>
 
                 <li>
-                  <Link href="/categories/shirts">Shirts</Link>
+                  <Link href="/pages/ClothShop">Kurtas</Link>
+                </li>
+                <li>
+                  <Link href="/pages/ClothShop">Lehengas</Link>
+                </li>
+                <li>
+                  <Link href="/pages/ClothShop">Sarees</Link>
                 </li>
 
                 <li>
-                  <Link href="/categories/tops">Tops</Link>
+                  <Link href="/pages/ClothShop">Shirts</Link>
                 </li>
 
                 <li>
-                  <Link href="/categories/pants">Pants</Link>
+                  <Link href="/pages/ClothShop">Tops</Link>
+                </li>
+
+                <li>
+                  <Link href="/pages/ClothShop">Pants</Link>
                 </li>
                 <li>
-                  <Link href="/categories/salwar">Salwar</Link>
+                  <Link href="/pages/ClothShop">Salwar</Link>
                 </li>
                 <li>
-                  <Link href="/categories/lounge-wear">Lounge Wear</Link>
+                  <Link href="/pages/ClothShop">Lounge Wear</Link>
                 </li>
                 <li>
-                  <Link href="/categories/overlay">Overlay</Link>
+                  <Link href="/pages/ClothShop">Overlay</Link>
                 </li>
 
                 {/* Trending Labels Section */}
                 <li className="dropdownHeading">Trending Labels</li>
                 <li>
-                  <Link href="/categories/vineet-rahul">Vineet Rahul</Link>
+                  <Link href="/pages/ClothShop">Vineet Rahul</Link>
                 </li>
                 <li>
-                  <Link href="/categories/paulmi-harsh">Paulmi & Harsh</Link>
+                  <Link href="/pages/ClothShop">Paulmi & Harsh</Link>
                 </li>
                 <li>
-                  <Link href="/categories/yam-india">Yam India</Link>
+                  <Link href="/pages/ClothShop">Yam India</Link>
                 </li>
                 <li>
-                  <Link href="/categories/one-not-two">One Not Two</Link>
+                  <Link href="/pages/ClothShop">One Not Two</Link>
                 </li>
                 <li>
-                  <Link href="/categories/chandrima">Chandrima</Link>
+                  <Link href="/pages/ClothShop">Chandrima</Link>
                 </li>
                 <li>
-                  <Link href="/categories/punit-balana">Punit Balana</Link>
+                  <Link href="/pages/ClothShop">Punit Balana</Link>
                 </li>
                 <li>
-                  <Link href="/categories/rajdeep-ranawat">
-                    Rajdeep Ranawat
-                  </Link>
+                  <Link href="/pages/ClothShop">Rajdeep Ranawat</Link>
                 </li>
                 <li>
-                  <Link href="/categories/torani">Torani</Link>
+                  <Link href="/pages/ClothShop">Torani</Link>
                 </li>
               </ul>
             )}
@@ -255,49 +253,43 @@ const Navbar = () => {
                 {/* Categories Section */}
                 <li className="dropdownHeading">Categories</li>
                 <li>
-                  <Link href="/categories/anklets">Anklets</Link>
+                  <Link href="/pages/JewelleryShop">Anklets</Link>
                 </li>
                 <li>
-                  <Link href="/categories/bangles-bracelets">
-                    Bangles & Bracelets
-                  </Link>
+                  <Link href="/pages/JewelleryShop">Bangles & Bracelets</Link>
                 </li>
                 <li>
-                  <Link href="/categories/brooch">Brooch</Link>
+                  <Link href="/pages/JewelleryShop">Brooch</Link>
                 </li>
                 <li>
-                  <Link href="/categories/buttons">Buttons</Link>
+                  <Link href="/pages/JewelleryShop">Buttons</Link>
                 </li>
                 <li>
-                  <Link href="/categories/cufflinks">Cufflinks</Link>
+                  <Link href="/pages/JewelleryShop">Cufflinks</Link>
                 </li>
                 <li>
-                  <Link href="/categories/cuffs">Cuffs</Link>
+                  <Link href="/pages/JewelleryShop">Cuffs</Link>
                 </li>
                 <li>
-                  <Link href="/categories/earrings">Earrings</Link>
+                  <Link href="/pages/JewelleryShop">Earrings</Link>
                 </li>
                 <li>
-                  <Link href="/categories/hair-accessories">
-                    Hair Accessories
-                  </Link>
+                  <Link href="/pages/JewelleryShop">Hair Accessories</Link>
                 </li>
                 <li>
-                  <Link href="/categories/hand-accessories">
-                    Hand Accessories
-                  </Link>
+                  <Link href="/pages/JewelleryShop">Hand Accessories</Link>
                 </li>
                 <li>
-                  <Link href="/categories/maang-tika">Maang-Tika</Link>
+                  <Link href="/pages/JewelleryShop">Maang-Tika</Link>
                 </li>
                 <li>
-                  <Link href="/categories/necklaces">Necklaces</Link>
+                  <Link href="/pages/JewelleryShop">Necklaces</Link>
                 </li>
                 <li>
-                  <Link href="/categories/rings">Rings</Link>
+                  <Link href="/pages/JewelleryShop">Rings</Link>
                 </li>
                 <li>
-                  <Link href="/categories/studs">Studs</Link>
+                  <Link href="/pages/JewelleryShop">Studs</Link>
                 </li>
 
                 {/* Collections Section */}
@@ -368,12 +360,13 @@ const Navbar = () => {
           {/* Clothing with dropdown */}
           <li className="mobileDropdownItem">
             <div className="mobileDropdownHeader" onClick={toggleMobileFashion}>
-              <Link
-                href="/pages/ClothShop"
-                onClick={(e) => e.stopPropagation()}
-              >
-                Clothing
-              </Link>
+            <Link href="/pages/ClothShop" onClick={(e) => { 
+    e.stopPropagation();
+    closeMenu(); 
+}}>
+Clothing
+</Link>
+
               <span className="dropdownToggle">
                 {mobileFashionOpen ? <FaChevronDown /> : <FaChevronRight />}
               </span>
@@ -451,7 +444,10 @@ const Navbar = () => {
             >
               <Link
                 href="/pages/JewelleryShop"
-                onClick={(e) => e.stopPropagation()}
+                onClick={(e) => {
+                  e.stopPropagation();  
+                  closeMenu();  
+                }}
               >
                 Jewellery
               </Link>
@@ -532,12 +528,12 @@ const Navbar = () => {
 
         <div className="mobileNavFooter">
           {/* <div className="mobileNavSocial">
-            <a href="#" className="socialIcon">
+            <Link href="#" className="socialIcon">
               Instagram
-            </a>
-            <a href="#" className="socialIcon">
+            </Link>
+            <Link href="#" className="socialIcon">
               Facebook
-            </a>
+            </Link>
           </div> */}
         </div>
       </div>

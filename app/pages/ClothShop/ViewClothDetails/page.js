@@ -4,8 +4,14 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { IoCartOutline } from "react-icons/io5";
 import { useRouter } from "next/navigation";
+import { LuPlus } from "react-icons/lu";
+import { LuMinus } from "react-icons/lu";
 const ViewClothDetails = () => {
   const router = useRouter();
+  // State for each section
+  const [isShippingInfoVisible, setIsShippingInfoVisible] = useState(false);
+  const [isCouponVisible, setIsCouponVisible] = useState(false);
+  const [isProductDetailsVisible, setIsProductDetailsVisible] = useState(false);
   const handleCardClick = () => {
     router.push("/pages/Cart");
   };
@@ -33,6 +39,17 @@ const ViewClothDetails = () => {
     }
   };
 
+  const toggleShippingInfo = () => {
+    setIsShippingInfoVisible((prev) => !prev);
+  };
+
+  const toggleCoupon = () => {
+    setIsCouponVisible((prev) => !prev);
+  };
+
+  const toggleProductDetails = () => {
+    setIsProductDetailsVisible((prev) => !prev);
+  };
   useEffect(() => {
     const interval = setInterval(() => {
       const newImages = [...slideImages.slice(1), slideImages[0]];
@@ -100,68 +117,118 @@ const ViewClothDetails = () => {
             <button onClick={handleCardClick}>Add To Cart</button>
             <button>BUY IT NOW</button>
           </div>
-          <div className="viewDetails-shopinfo">
-            <div className="shopinfo-head">
+          <div
+            className={`viewDetails-shopinfo ${
+              isShippingInfoVisible ? "visible" : ""
+            }`}
+          >
+            <div className="shopinfo-head" onClick={toggleShippingInfo}>
               <p>Shipping Info</p>
+              <span>{isShippingInfoVisible ? <LuMinus/> : <LuPlus/>}</span>
             </div>
             <ul>
-              <li>This product cannot be returned or exchanged</li>
-              <li>To be shipped In 15-20 working days</li>
+              <li>This product cannot be returned or exchanged.</li>
+              <li>To be shipped in 15-20 working days.</li>
+            </ul>
+          </div>
+
+          {/* Coupon Section */}
+          <div
+            className={`viewDetails-shopinfo ${
+              isCouponVisible ? "visible" : ""
+            }`}
+          >
+            <div className="shopinfo-head" onClick={toggleCoupon}>
+              <p>Coupon</p>
+              <span>{isCouponVisible ? <LuMinus/> : <LuPlus/>}</span>
+            </div>
+            <ul>
+              <li>
+                Use code <strong>WELCOME10</strong> to get 10% off on your first
+                order.
+              </li>
+              <li>Coupons are applicable only on orders above $100.</li>
+            </ul>
+          </div>
+
+          {/* Product Details Section */}
+          <div
+            className={`viewDetails-shopinfo ${
+              isProductDetailsVisible ? "visible" : ""
+            }`}
+          >
+            <div className="shopinfo-head" onClick={toggleProductDetails}>
+              <p>Product Details</p>
+              <span>{isProductDetailsVisible ? <LuMinus/> : <LuPlus/>}</span>
+            </div>
+            <ul>
+              <li>Material: Cotton Silk Blend</li>
+              <li>Color: Pink</li>
+              <li>Includes: Kurta, Dupatta, and Pants</li>
+              <li>Care Instructions: Dry Clean Only</li>
             </ul>
           </div>
         </div>
       </div>
       <div className="shoppage-might">
-          <div className="shoppage-might-head">
-            <h2>You Might Also Like</h2>
-          </div>
-          <div className="home-specialty-content">
+        <div className="shoppage-might-head">
+          <h2>You Might Also Like</h2>
+        </div>
+        <div className="home-specialty-content">
           <div className="home-specialty-img">
-              <img src="/image/Specialty5.jpeg" alt="" />
-              <div className="specialy-img-content">
-                <p>Demo Product Name</p>
-                <span>$500</span>
-                <Link href='/pages/Cart'><div className="specialy-img-content">
-                 <p>Add to Cart</p>
-                 <IoCartOutline/>
-                </div></Link>
-              </div>
+            <img src="/image/Specialty5.jpeg" alt="" />
+            <div className="specialy-img-content">
+              <p>Demo Product Name</p>
+              <span>$500</span>
+              <Link href="/pages/Cart">
+                <div className="specialy-img-content">
+                  <p>Add to Cart</p>
+                  <IoCartOutline />
+                </div>
+              </Link>
             </div>
-            <div className="home-specialty-img">
-              <img src="/image/Specialty6.jpeg" alt="" />
-              <div className="specialy-img-content">
-                <p>Demo Product Name</p>
-                <span>$500</span>
-                <Link href='/pages/Cart'><div className="specialy-img-content">
-                 <p>Add to Cart</p>
-                 <IoCartOutline/>
-                </div></Link>
-              </div>
+          </div>
+          <div className="home-specialty-img">
+            <img src="/image/Specialty6.jpeg" alt="" />
+            <div className="specialy-img-content">
+              <p>Demo Product Name</p>
+              <span>$500</span>
+              <Link href="/pages/Cart">
+                <div className="specialy-img-content">
+                  <p>Add to Cart</p>
+                  <IoCartOutline />
+                </div>
+              </Link>
             </div>
-            <div className="home-specialty-img">
-              <img src="/image/Specialty7.jpeg" alt="" />
-              <div className="specialy-img-content">
-                <p>Demo Product Name</p>
-                <span>$500</span>
-                <Link href='/pages/Cart'><div className="specialy-img-content">
-                 <p>Add to Cart</p>
-                 <IoCartOutline/>
-                </div></Link>
-              </div>
+          </div>
+          <div className="home-specialty-img">
+            <img src="/image/Specialty7.jpeg" alt="" />
+            <div className="specialy-img-content">
+              <p>Demo Product Name</p>
+              <span>$500</span>
+              <Link href="/pages/Cart">
+                <div className="specialy-img-content">
+                  <p>Add to Cart</p>
+                  <IoCartOutline />
+                </div>
+              </Link>
             </div>
-            <div className="home-specialty-img">
-              <img src="/image/Specialty8.jpeg" alt="" />
-              <div className="specialy-img-content">
-                <p>Demo Product Name</p>
-                <span>$500</span>
-                <Link href='/pages/Cart'><div className="specialy-img-content">
-                 <p>Add to Cart</p>
-                 <IoCartOutline/>
-                </div></Link>
-              </div>
+          </div>
+          <div className="home-specialty-img">
+            <img src="/image/Specialty8.jpeg" alt="" />
+            <div className="specialy-img-content">
+              <p>Demo Product Name</p>
+              <span>$500</span>
+              <Link href="/pages/Cart">
+                <div className="specialy-img-content">
+                  <p>Add to Cart</p>
+                  <IoCartOutline />
+                </div>
+              </Link>
             </div>
           </div>
         </div>
+      </div>
     </div>
   );
 };

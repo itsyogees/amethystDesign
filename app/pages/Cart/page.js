@@ -19,7 +19,7 @@ const Cart = () => {
       price: 4500,
       discount: 500,
       quantity: 1,
-      image: "/image/WomensDress.png",
+      image: "/image/Specialty3.png",
     },
   ]);
 
