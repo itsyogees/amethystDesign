@@ -8,6 +8,7 @@ import { LiaRetweetSolid } from "react-icons/lia";
 import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 import { FiSearch } from "react-icons/fi";
 import { LuSettings2 } from "react-icons/lu";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 import { IoCartOutline } from "react-icons/io5";
 import { useRouter } from "next/navigation";
@@ -52,72 +53,84 @@ const JewelleryShop = () => {
       id: 1,
       image: "/image/shop1.jpeg",
       title: "Demo Product Name 1",
+     
       oldPrice: "$600",
     },
     {
       id: 2,
       image: "/image/shop2.jpeg",
       title: "Demo Product Name 2",
+     
       oldPrice: "$600",
     },
     {
       id: 3,
       image: "/image/shop3.jpeg",
       title: "Demo Product Name 3",
+     
       oldPrice: "$600",
     },
     {
       id: 4,
       image: "/image/shop4.jpeg",
       title: "Demo Product Name 4",
+     
       oldPrice: "$600",
     },
     {
       id: 5,
       image: "/image/shop5.jpeg",
       title: "Demo Product Name 5",
+     
       oldPrice: "$600",
     },
     {
       id: 6,
       image: "/image/shop6.jpeg",
       title: "Demo Product Name 6",
+     
       oldPrice: "$600",
     },
     {
       id: 7,
       image: "/image/shop6.jpeg",
       title: "Demo Product Name 7",
+     
       oldPrice: "$600",
     },
     {
       id: 8,
       image: "/image/shop6.jpeg",
       title: "Demo Product Name 8",
+     
       oldPrice: "$600",
     },
     {
       id: 9,
       image: "/image/shop6.jpeg",
       title: "Demo Product Name 9",
+     
       oldPrice: "$600",
     },
     {
       id: 10,
       image: "/image/shop6.jpeg",
       title: "Demo Product Name 10",
+     
       oldPrice: "$600",
     },
     {
       id: 11,
       image: "/image/shop6.jpeg",
       title: "Demo Product Name 11",
+     
       oldPrice: "$600",
     },
     {
       id: 12,
       image: "/image/shop6.jpeg",
       title: "Demo Product Name 12",
+     
       oldPrice: "$600",
     },
   ];
@@ -161,11 +174,56 @@ const JewelleryShop = () => {
     // Clear search input
     setSearchValue("");
   };
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const imagesSmall = [
+    "/image/bannerslider1.png",
+    "/image/bannerslider2.png",
+    "/image/bannerslider3.png",
+    "/image/bannerslider4.png",
+    "/image/bannerslider5.png",
+    "/image/bannerslider1.png",
+  ];
+  const slideWidth = 20; // Width of each slide in percentage (100% / 5 images = 20%)
+  const maxScroll = (imagesSmall.length - 5) * slideWidth; // Maximum scroll position
+
+  const handleScrollLeft = () => {
+    setScrollPosition((prev) => Math.max(prev - slideWidth, 0));
+  };
+
+  const handleScrollRight = () => {
+    setScrollPosition((prev) => Math.min(prev + slideWidth, maxScroll));
+  };
   return (
     <div className="shoppage">
       {/* <div className="shop-banner">
             <img src="/image/jewelle.png" alt="" />
         </div> */}
+      <div className="smallSlider">
+        <div
+          className="smallSliderImages"
+          style={{ transform: `translateX(-${scrollPosition}%)` }}
+        >
+          {imagesSmall.map((image, index) => (
+            <img key={index} src={image} alt={`Slide ${index}`} />
+          ))}
+        </div>
+        <div className="slider-controls">
+          <button
+            className="slider-arrow left"
+            onClick={handleScrollLeft}
+            disabled={scrollPosition === 0}
+          >
+            <FaArrowLeft />
+          </button>
+          <button
+            className="slider-arrow right"
+            onClick={handleScrollRight}
+            disabled={scrollPosition === maxScroll}
+          >
+            <FaArrowRight />
+          </button>
+        </div>
+      </div>
       <div className="shoppageContainer">
         <div className="shoppageHead">
           {/* <div className="shoppageHeadContainer">
@@ -200,7 +258,6 @@ const JewelleryShop = () => {
 
           {/* Filters and Search - Bottom Section */}
           <div className="filterBar-content">
-            
             {/* <div className="filterTab">
               <span className="filterLabel">Size</span>
               <div className="filterDropdown">
@@ -591,27 +648,34 @@ const JewelleryShop = () => {
                   <div
                     key={item.id}
                     className="tabCard"
-                    onClick={handleCardClick}
+                    
                     onMouseEnter={() => handleMouseEnter(item.id)}
                     onMouseLeave={handleMouseLeave}
                   >
-                    <img
-                      src={hoveredCard === item.id ? item.image : item.image}
-                      alt={item.title}
-                      className="templatecardImage"
-                    />
-                    <p>{item.title}</p>
-                    <div className="tabPrice">
-                      <p>{item.oldPrice}</p>
-                      <p>{item.nexPrice}</p>
-                    </div>
-                    <div className="locate">
-                      <Link href="/pages/Cart">
-                        <div className="specialy-img-content">
-                          <p>Add to Cart</p>
-                          <IoCartOutline />
+                    <div className="image-container">
+                      <img
+                        src={item.image}
+                        alt={item.title}
+                        className="templatecardImage"
+                      />
+                      {hoveredCard === item.id && (
+                        <div className="add-to-cart-overlay">
+                          <div className="specialy-img-content">
+                            <Link href="/pages/Cart">
+                              <p>Add to Cart</p>
+                            </Link>
+                            <IoCartOutline />
+                          </div>
                         </div>
-                      </Link>
+                      )}
+                    </div>
+                    <p>{item.title}</p>
+                    {/* <span>{item.modal}</span> */}
+                    <div className="tabPrice" onClick={handleCardClick}>
+
+                      <p>{item.oldPrice}</p>
+                     
+                      <p>{item.nexPrice}</p>
                     </div>
                   </div>
                 ))}
@@ -630,4 +694,4 @@ const JewelleryShop = () => {
   );
 };
 
-export default JewelleryShop;
+export default JewelleryShop; 

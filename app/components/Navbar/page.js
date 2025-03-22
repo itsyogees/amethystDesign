@@ -23,6 +23,7 @@ const Navbar = () => {
   const [mobileAccessoriesOpen, setMobileAccessoriesOpen] = useState(false);
   const [scrollDirection, setScrollDirection] = useState("up");
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [showBorders, setShowBorders] = useState(true);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,8 +31,12 @@ const Navbar = () => {
 
       if (currentScrollY > lastScrollY) {
         setScrollDirection("down");
+        // Remove borders when scrolling down
+        setShowBorders(false);
       } else {
         setScrollDirection("up");
+        // Show borders when scrolling up, but only at the top
+        setShowBorders(currentScrollY <= 50);
       }
 
       setLastScrollY(currentScrollY);
@@ -82,6 +87,12 @@ const Navbar = () => {
     setMobileAccessoriesOpen(!mobileAccessoriesOpen);
     setMobileFashionOpen(false); // Close other dropdown
   };
+  const handleScroll = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
     <header className={`navbarMain ${isSticky ? "sticky" : ""}`}>
@@ -89,9 +100,10 @@ const Navbar = () => {
       {scrollDirection === "up" && (
         <div className="navbarContainer">
           {/* Logo */}
-          
-<Link href="/"> 
-          <h1 className="logo">Amethyst</h1></Link>
+
+          <Link href="/">
+            <h1 className="logo">Amethyst</h1>
+          </Link>
 
           {/* Search Bar */}
           <div className="searchBar">
@@ -105,13 +117,13 @@ const Navbar = () => {
 
           {/* Icons */}
           <div className="navIcons">
-          <Link href="/pages/Cart">
-  <CiShoppingCart className="icon" title="Cart" />
-</Link>
+            <Link href="/pages/Cart">
+              <CiShoppingCart className="icon" title="Cart" />
+            </Link>
 
-<Link href="/pages/UserProfile">
-  <RiUser3Line className="icon" title="User" />
-</Link>
+            <Link href="/pages/UserProfile">
+              <RiUser3Line className="icon" title="User" />
+            </Link>
             <button className="menuToggle" onClick={toggleMenu}>
               {isMenuOpen ? <FaTimes /> : <FaBars />}
             </button>
@@ -129,7 +141,11 @@ const Navbar = () => {
         </div>
       </div>
 
-      <nav className="navLinks">
+      <nav
+        className={`navLinks ${
+          showBorders ? "with-borders" : "without-borders"
+        }`}
+      >
         <ul className="navList">
           <li>
             <Link href="/">Just In</Link>
@@ -226,8 +242,6 @@ const Navbar = () => {
                 <li>
                   <Link href="/categories/torani">Torani</Link>
                 </li>
-              
-              
               </ul>
             )}
           </li>
@@ -235,7 +249,7 @@ const Navbar = () => {
             onMouseEnter={toggleAccessoriesDropdown}
             onMouseLeave={toggleAccessoriesDropdown}
           >
-            <Link href="/pages/JewelleryShop">Accessories</Link>
+            <Link href="/pages/JewelleryShop">Jewellery</Link>
             {isAccessoriesDropdownOpen && (
               <ul className="dropdownMenu">
                 {/* Categories Section */}
@@ -317,23 +331,12 @@ const Navbar = () => {
           <li>
             <Link href="/">Designers</Link>
           </li>
-          <li>
-            <Link href="/">Jewelry</Link>
-          </li>
-          <li>
-            <Link href="/">Collections</Link>
-          </li>
+
           <li>
             <Link href="/pages/About">About Us</Link>
           </li>
           <li>
             <Link href="/pages/Contact">Contact Us</Link>
-          </li>
-          <li>
-            <Link href="/">Kids</Link>
-          </li>
-          <li>
-            <Link href="/">Men</Link>
           </li>
         </ul>
       </nav>
@@ -450,7 +453,7 @@ const Navbar = () => {
                 href="/pages/JewelleryShop"
                 onClick={(e) => e.stopPropagation()}
               >
-                Accessories
+                Jewellery
               </Link>
               <span className="dropdownToggle">
                 {mobileAccessoriesOpen ? <FaChevronDown /> : <FaChevronRight />}
@@ -518,23 +521,12 @@ const Navbar = () => {
           <li onClick={closeMenu}>
             <Link href="/">Designers</Link>
           </li>
-          <li onClick={closeMenu}>
-            <Link href="/">Jewelry</Link>
-          </li>
-          <li onClick={closeMenu}>
-            <Link href="/">Collections</Link>
-          </li>
+
           <li onClick={closeMenu}>
             <Link href="/pages/About">About Us</Link>
           </li>
           <li onClick={closeMenu}>
             <Link href="/pages/Contact">Contact Us</Link>
-          </li>
-          <li onClick={closeMenu}>
-            <Link href="/">Kids</Link>
-          </li>
-          <li onClick={closeMenu}>
-            <Link href="/">Men</Link>
           </li>
         </ul>
 
