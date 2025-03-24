@@ -3,45 +3,71 @@
 import React, { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { LuSettings2 } from "react-icons/lu";
+import { useRouter } from "next/navigation";
 
 const Designers = () => {
+  const router = useRouter();
   const [showFilter, setShowFilter] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedLetter, setSelectedLetter] = useState(null);
- 
+
   const designers = [
-    "Alexander Wang", "Balenciaga", "Calvin Klein",
-    "Dior", "Elie Saab", "Fendi",
-    "Gucci", "Hermes", "Isabel Marant",
-    "Jimmy Choo", "Kenzo", "Louis Vuitton",
-    "Marc Jacobs", "Narciso Rodriguez", "Oscar de la Renta",
-    "Prada", "Quiksilver", "Ralph Lauren",
-    "Stella McCartney", "Tom Ford", "Undercover",
-    "Valentino", "Westwood", "Xander Zhou",
-    "Yves Saint Laurent", "Zac Posen", "Armani",
-    "Burberry", "Chanel", "Dolce & Gabbana"
+    "Alexander Wang",
+    "Balenciaga",
+    "Calvin Klein",
+    "Dior",
+    "Elie Saab",
+    "Fendi",
+    "Gucci",
+    "Hermes",
+    "Isabel Marant",
+    "Jimmy Choo",
+    "Kenzo",
+    "Louis Vuitton",
+    "Marc Jacobs",
+    "Narciso Rodriguez",
+    "Oscar de la Renta",
+    "Prada",
+    "Quiksilver",
+    "Ralph Lauren",
+    "Stella McCartney",
+    "Tom Ford",
+    "Undercover",
+    "Valentino",
+    "Westwood",
+    "Xander Zhou",
+    "Yves Saint Laurent",
+    "Zac Posen",
+    "Armani",
+    "Burberry",
+    "Chanel",
+    "Dolce & Gabbana",
   ];
- 
+
   const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
- 
+
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
-    setSelectedLetter(null); 
+    setSelectedLetter(null);
   };
- 
+
   const handleLetterClick = (letter) => {
     setSelectedLetter(letter === selectedLetter ? null : letter);
-    setSearchQuery(""); 
+    setSearchQuery("");
   };
 
-  
   const handleAllClick = () => {
-    setSelectedLetter(null);  
-    setSearchQuery("");  
-     setShowFilter(false);
+    setSelectedLetter(null);
+    setSearchQuery("");
+    setShowFilter(false);
   };
 
- 
+  const handleDesignerClick = (designerName) => {
+    // Encode the designer name for URL and navigate
+    // const encodedName = encodeURIComponent(designerName);
+    router.push(`/pages/DesignedByDesigner?designer=${designerName.replace(/ /g, '-')}`);
+  };
+
   const filteredDesigners = designers
     .filter((designer) => {
       if (selectedLetter) {
@@ -49,7 +75,7 @@ const Designers = () => {
       }
       return designer.toLowerCase().includes(searchQuery.toLowerCase());
     })
-    .sort((a, b) => a.localeCompare(b));  
+    .sort((a, b) => a.localeCompare(b));
 
   return (
     <div className="shoppage">
@@ -79,72 +105,68 @@ const Designers = () => {
                 </label>
               </div>
               <div className="templateFilterGroup">
-                <label
-                  className="templateFilterName"
-                  htmlFor="CLOTHING"
-                >
+                <label className="templateFilterName" htmlFor="CLOTHING">
                   CLOTHING
                 </label>
               </div>
               <div className="templateFilterGroup">
-                <label
-                  className="templateFilterName"
-                  htmlFor="JEWELLERY"
-                >
+                <label className="templateFilterName" htmlFor="JEWELLERY">
                   JEWELLERY
                 </label>
               </div>
               <div className="templateFilterGroup">
-                <label
-                  className="templateFilterName"
-                  htmlFor="HOME"
-                >
+                <label className="templateFilterName" htmlFor="HOME">
                   HOME
                 </label>
               </div>
             </div>
             <div className="templateCards">
               <div className="templateCardsContent">
-                {/* Search Input */}
-                <div className="searchContainer">
-                <h2>Designer</h2>
-                  <div className="searchInputContainer">
-                    
-                    <input
-                      type="text"
-                      placeholder="Search designers..."
-                      value={searchQuery}
-                      onChange={handleSearchChange}
-                    />
-                    <FaSearch className="searchIcon" />
+                <div className="alphaSeach">
+                  {/* Search Input */}
+                  <div className="searchContainer">
+                    <h2>Designer</h2>
+                    <div className="searchInputContainer">
+                      <input
+                        type="text"
+                        placeholder="Search designers..."
+                        value={searchQuery}
+                        onChange={handleSearchChange}
+                      />
+                      <FaSearch className="searchIcon" />
+                    </div>
                   </div>
-                </div>
 
-                <div className="alphabetFilter">
-                  {alphabet.map((letter) => (
-                    <button
-                      key={letter}
-                      className={`alphabetLetter ${
-                        selectedLetter === letter ? "selected" : ""
-                      }`}
-                      onClick={() => handleLetterClick(letter)}
-                    >
-                      {letter}
-                    </button>
-                  ))}
-                </div>
- 
-                {filteredDesigners.length > 0 ? (
-                  <div className="designersGrid">
-                    {filteredDesigners.map((designer, index) => (
-                      <div key={index} className="designerName">
-                        {designer}
-                      </div>
+                  <div className="alphabetFilter">
+                    {alphabet.map((letter) => (
+                      <button
+                        key={letter}
+                        className={`alphabetLetter ${
+                          selectedLetter === letter ? "selected" : ""
+                        }`}
+                        onClick={() => handleLetterClick(letter)}
+                      >
+                        {letter}
+                      </button>
                     ))}
                   </div>
-                ) : (
-                  <div className="noResults">No designers found.</div>
-                )}
+
+                  {filteredDesigners.length > 0 ? (
+                    <div className="designersGrid">
+                      {filteredDesigners.map((designer, index) => (
+                        <button
+                          key={index}
+                          className="designerName"
+                          onClick={() => handleDesignerClick(designer)}
+                        >
+                          {designer}
+                        </button>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="noResults">No designers found.</div>
+                  )}
+                </div>
               </div>
             </div>
           </div>

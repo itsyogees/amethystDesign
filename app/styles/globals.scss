@@ -2830,7 +2830,7 @@ body.menu-open::after {
         justify-content: space-between;
         margin-bottom: 1.5rem;
 
-        .filterTab {
+        .filterTab { 
           font-size: 1.1rem;
           font-weight: 700;
           color: #1a1a1a;
@@ -2957,7 +2957,7 @@ body.menu-open::after {
             transition: all 0.25s ease;
 
             &:focus-within {
-              border-color: #3b82f6;
+              border-color: #64748b;
               box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
             }
 
@@ -3326,135 +3326,291 @@ body.menu-open::after {
 
           .templateCardsContent {
             display: flex;
-            flex-direction: column;
-            width: 100%;
-
-            .searchContainer {
-              margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 1rem;
+            .alphaSeach {
               display: flex;
-              justify-content: space-between;
-              flex-wrap: wrap;
-              h2 {
-                font-size: 1.3rem;
-                font-weight: 400;
-              }
-              .searchInputContainer {
-                position: relative;
+              flex-direction: column;
+              width: 100%;
+              .searchContainer {
+                margin-bottom: 20px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                h2 {
+                  font-size: 1.2rem;
+                  font-weight: 400;
+                }
+                .searchInputContainer {
+                  position: relative;
 
-                input {
-                  width: 100%;
-                  padding: 10px 40px 10px 20px;
-                  border: 1px solid #ccc;
-                  border-radius: 25px;
-                  font-size: 1rem;
-                  outline: none;
-                  transition: border-color 0.3s ease;
+                  input {
+                    width: 100%;
+                    padding: 10px 40px 10px 20px;
+                    border: 1px solid #ccc;
+                    border-radius: 25px;
+                    font-size: 1rem;
+                    outline: none;
+                    transition: border-color 0.3s ease;
 
-                  &:focus {
-                    border-color: #007bff;
+                    &:focus {
+                      border-color: #007bff;
+                    }
+                  }
+
+                  .searchIcon {
+                    position: absolute;
+                    right: 15px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    color: #888;
+                    font-size: 1.2rem;
                   }
                 }
-
-                .searchIcon {
-                  position: absolute;
-                  right: 15px;
-                  top: 50%;
-                  transform: translateY(-50%);
-                  color: #888;
-                  font-size: 1.2rem;
-                }
-              }
-            }
-
-            // Alphabet Filter
-            .alphabetFilter {
-              display: flex;
-              flex-wrap: wrap;
-              justify-content: space-between;
-              margin-bottom: 30px;
-
-              .alphabetLetter {
-                cursor: pointer;
-                background-color: #fff;
-                border: none;
-                outline: none;
-                font-size: 0.9rem;
-                color: #1e293b;
-                transition: color 0.3s ease;
-
-                &.selected {
-                  color: #1e293b;
-                }
-
-                &:hover {
-                  color: #1e293b;
-                }
-              }
-            }
-
-            // Designers Grid - 3 columns
-            .designersGrid {
-              display: grid;
-              grid-template-columns: repeat(3, 1fr);
-              gap: 1rem;
-
-              // Tablet: 2 columns
-              @media (max-width: 768px) {
-                grid-template-columns: repeat(2, 1fr);
               }
 
-              // Mobile: 1 column
-              @media (max-width: 480px) {
-                grid-template-columns: 1fr;
-              }
+              // Alphabet filter styles
+              .alphabetFilter {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+                margin-bottom: 30px;
 
-              .designerName {
-                padding: 12px 0;
-                font-size: 1rem;
-                color: #333;
-                transition: transform 0.3s ease, color 0.3s ease;
-
-                &:hover {
+                .alphabetLetter {
+                  border: none;
+                  outline: none;
+                  background-color: #fff;
                   cursor: pointer;
-                  transform: translateX(5px);
+                  padding: 8px 12px;
+                  border-radius: 5px;
+                  font-size: 1rem;
+                  transition: color 0.3s ease;
+
+                  &.selected {
+                    color: #000000;
+                    font-weight: 600;
+                  }
+
+                  &:hover {
+                    color: #000000;
+                  }
+                }
+              }
+
+              // Designers columns styles
+              .designersGrid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 2rem 1.5rem;
+
+                // Tablet: 2 columns
+                @media (max-width: 768px) {
+                  grid-template-columns: repeat(2, 1fr);
+                }
+
+                // Mobile: 1 column
+                @media (max-width: 480px) {
+                  grid-template-columns: repeat(2, 1fr);
+                }
+
+                .designerName {
+                  text-align: start;
+                  padding: 10px 0;
+                  font-size: 1rem;
+                  color: #333;
+                  transition: transform 0.3s ease, color 0.3s ease;
+                  border: none;
+                  outline: none;
+                  background-color: #fff;
+                  cursor: pointer;
+              
+                  
+                  
+                 
+
+                  &.selected {
+                    color: #000000;
+                    font-weight: 600;
+                  }
+
+                  &:hover {
+                    color: #000000;
+                  }
+                  &:hover { 
+                    transform: translateX(5px);
+                  }
+                }
+              }
+
+              .noResults {
+                padding: 20px;
+                color: #666;
+                text-align: center;
+              }
+
+              // Responsive adjustments
+              @media (max-width: 768px) {
+                .designersColumnsContainer {
+                  flex-direction: column;
+                  gap: 10px;
+
+                  .designersColumn {
+                    min-width: 100%;
+                  }
                 }
               }
             }
+            @media (max-width: 480px) {
+              justify-content: center;
+            }
 
-            .noResults {
-              font-size: 1rem;
-              color: #888;
+            .tabCard {
+              border-radius: 8px;
+              overflow: hidden;
+              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
               text-align: center;
-              padding: 20px;
-            }
-          }
+              background: #fff;
+              transition: transform 0.3s ease, box-shadow 0.3s ease;
+              cursor: pointer;
 
-          // Filter styles
-          .templatesFilter {
-            margin-bottom: 20px;
-            transition: max-height 0.3s ease, opacity 0.3s ease;
-            overflow: hidden;
+              &:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+              }
+ 
+              @media (min-width: 1024px) {
+                width: calc(33.33% - 1rem); 
+              }
+ 
+              @media (max-width: 1023px) and (min-width: 769px) {
+                width: calc(50% - 1rem); 
+              }
+ 
+              @media (max-width: 768px) {
+                width: calc(100% - 1rem); 
+              }
 
-            &.visible {
-              max-height: 500px;
-              opacity: 1;
-            }
+              .image-container {
+                position: relative;
+                width: 100%;
+                height: 500px;
+                overflow: hidden;
 
-            &.hidden {
-              max-height: 0;
-              opacity: 0;
-            }
+                @media (max-width: 500px) {
+                  height: 300px;
+                }
 
-            .templateFilterGroup {
-              margin-bottom: 15px;
+                img {
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  border-radius: 4px 4px 0 0;
+                  transition: transform 0.3s ease;
+                }
 
-              .templateFilterName {
-                cursor: pointer;
-                font-weight: 500;
-                transition: color 0.3s ease;
+                .add-to-cart-overlay {
+                  position: absolute;
+                  bottom: 0;
+                  left: 0;
+                  width: 100%;
+                  height: 15%;
+                  background: linear-gradient(
+                    to top,
+                    rgba(0, 0, 0, 0.8),
+                    rgba(0, 0, 0, 0)
+                  );
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  opacity: 0;
+                  transition: opacity 0.5s ease, transform 0.5s ease;
+                  transform: translateY(100%);
+                }
 
-                &:hover {
-                  color: #007bff;
+                &:hover .add-to-cart-overlay {
+                  opacity: 1;
+                  transform: translateY(0);
+                }
+
+                .specialy-img-content {
+                  width: 80%;
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  gap: 0.5rem;
+                  padding: 0.5rem 1rem;
+                  background-color: rgba(255, 255, 255, 0.9);
+                  border-radius: 5px;
+                  transition: background-color 0.3s ease;
+                  cursor: pointer;  
+
+                  p {
+                    margin: 0;
+                    font-weight: 500;
+                    color: #333;
+                    text-decoration: none;  
+                  }
+
+                  svg {
+                    font-size: 1.2rem;
+                    transition: transform 0.3s ease;
+                  }
+
+                  &:hover {
+                    background-color: rgba(255, 255, 255, 1);
+
+                    svg {
+                      transform: scale(1.1);
+                    }
+                  }
+                }
+              }
+
+              p {
+                font-size: 1.2rem;
+                margin: 1rem 0;
+                color: rgba(43, 43, 43, 1);
+
+                @media (max-width: 1024px) {
+                  font-size: 0.9rem;
+                }
+                @media (max-width: 768px) {
+                  font-size: 0.9rem;
+                }
+                @media (max-width: 480px) {
+                  font-size: 0.8rem;
+                }
+              }
+              span {
+                margin: 1rem 0;
+                color: rgba(153, 153, 153, 1);
+              }
+              .tabPrice {
+                display: flex;
+                justify-content: center;
+                gap: 0.5rem;
+                margin: 1rem 0;
+
+                p {
+                  margin: 0;
+
+                  &:first-child {
+                    color: rgba(43, 43, 43, 1);
+                    font-weight: 600;
+                  }
+
+                  &:last-child {
+                    font-weight: 600;
+                    color: #888;
+                    text-decoration: line-through;
+                  }
+
+                  @media (max-width: 768px) {
+                    font-size: 0.9rem;
+                  }
+                  @media (max-width: 480px) {
+                    font-size: 0.8rem;
+                  }
                 }
               }
             }

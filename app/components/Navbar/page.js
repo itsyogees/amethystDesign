@@ -320,8 +320,60 @@ const Navbar = () => {
               </ul>
             )}
           </li>
-          <li>
+          <li
+            onMouseEnter={toggleAccessoriesDropdown}
+            onMouseLeave={toggleAccessoriesDropdown}
+          >
             <Link href="/pages/Designers">Designers</Link>
+            {isAccessoriesDropdownOpen && (
+              <ul className="dropdownMenu">
+                {/* Categories Section */}
+                <li className="dropdownHeading">Our Favourites</li>
+                <li>
+                  <Link href="/pages/Designers">Alexander Wang</Link>
+                </li>
+                <li>
+                  <Link href="/pages/Designers">Balenciaga</Link>
+                </li>
+                <li>
+                  <Link href="/pages/Designers">Dior</Link>
+                </li>
+                <li>
+                  <Link href="/pages/Designers">Fendi</Link>
+                </li>
+                <li>
+                  <Link href="/pages/Designers">Gucci</Link>
+                </li>
+                <li>
+                  <Link href="/pages/Designers">Hermes</Link>
+                </li>
+                <li>
+                  <Link href="/pages/Designers">Isabel Marant</Link>
+                </li>
+                <li>
+                  <Link href="/pages/Designers">Jimmy Choo</Link>
+                </li>
+                <li>
+                  <Link href="/pages/Designers">Kenzo</Link>
+                </li>
+                <li>
+                  <Link href="/pages/Designers">Louis Vuitton</Link>
+                </li>
+                <li>
+                  <Link href="/pages/Designers">Marc Jacobs</Link>
+                </li>
+                <li>
+                  <Link href="/pages/Designers">
+                    Oscar de la Renta
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/pages/Designers">Prada</Link>
+                </li>
+
+                {/* Collections Section */}
+              </ul>
+            )}
           </li>
 
           <li>
@@ -360,12 +412,15 @@ const Navbar = () => {
           {/* Clothing with dropdown */}
           <li className="mobileDropdownItem">
             <div className="mobileDropdownHeader" onClick={toggleMobileFashion}>
-            <Link href="/pages/ClothShop" onClick={(e) => { 
-    e.stopPropagation();
-    closeMenu(); 
-}}>
-Clothing
-</Link>
+              <Link
+                href="/pages/ClothShop"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  closeMenu();
+                }}
+              >
+                Clothing
+              </Link>
 
               <span className="dropdownToggle">
                 {mobileFashionOpen ? <FaChevronDown /> : <FaChevronRight />}
@@ -445,8 +500,8 @@ Clothing
               <Link
                 href="/pages/JewelleryShop"
                 onClick={(e) => {
-                  e.stopPropagation();  
-                  closeMenu();  
+                  e.stopPropagation();
+                  closeMenu();
                 }}
               >
                 Jewellery
