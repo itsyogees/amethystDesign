@@ -20,6 +20,7 @@ const Navbar = () => {
   const [isAccessoriesDropdownOpen, setIsAccessoriesDropdownOpen] =
     useState(false);
   const [mobileFashionOpen, setMobileFashionOpen] = useState(false);
+  const [mobileDesignersOpen, setMobileDesignersOpen] = useState(false);
   const [mobileAccessoriesOpen, setMobileAccessoriesOpen] = useState(false);
   const [scrollDirection, setScrollDirection] = useState("up");
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -324,51 +325,75 @@ const Navbar = () => {
             onMouseEnter={toggleAccessoriesDropdown}
             onMouseLeave={toggleAccessoriesDropdown}
           >
-            <Link href="/pages/Designers">Designers</Link>
+            Designers
             {isAccessoriesDropdownOpen && (
               <ul className="dropdownMenu">
                 {/* Categories Section */}
                 <li className="dropdownHeading">Our Favourites</li>
                 <li>
-                  <Link href="/pages/Designers">Alexander Wang</Link>
+                  <Link href="/pages/DesignedByDesigner?designer=Alexander-Wang">
+                    Alexander Wang
+                  </Link>
                 </li>
                 <li>
-                  <Link href="/pages/Designers">Balenciaga</Link>
+                  <Link href="/pages/DesignedByDesigner?designer=Balenciaga">
+                    Balenciaga
+                  </Link>
                 </li>
                 <li>
-                  <Link href="/pages/Designers">Dior</Link>
+                  <Link href="/pages/DesignedByDesigner?designer=Dior">
+                    Dior
+                  </Link>
                 </li>
                 <li>
-                  <Link href="/pages/Designers">Fendi</Link>
+                  <Link href="/pages/DesignedByDesigner?designer=Fendi">
+                    Fendi
+                  </Link>
                 </li>
                 <li>
-                  <Link href="/pages/Designers">Gucci</Link>
+                  <Link href="/pages/DesignedByDesigner?designer=Gucci">
+                    Gucci
+                  </Link>
                 </li>
                 <li>
-                  <Link href="/pages/Designers">Hermes</Link>
+                  <Link href="/pages/DesignedByDesigner?designer=Hermes">
+                    Hermes
+                  </Link>
                 </li>
                 <li>
-                  <Link href="/pages/Designers">Isabel Marant</Link>
+                  <Link href="/pages/DesignedByDesigner?designer=Isabel-Marant">
+                    Isabel Marant
+                  </Link>
                 </li>
                 <li>
-                  <Link href="/pages/Designers">Jimmy Choo</Link>
+                  <Link href="/pages/DesignedByDesigner?designer=Jimmy-Choo">
+                    Jimmy Choo
+                  </Link>
                 </li>
                 <li>
-                  <Link href="/pages/Designers">Kenzo</Link>
+                  <Link href="/pages/DesignedByDesigner?designer=Kenzo">
+                    Kenzo
+                  </Link>
                 </li>
                 <li>
-                  <Link href="/pages/Designers">Louis Vuitton</Link>
+                  <Link href="/pages/DesignedByDesigner?designer=Louis-Vuitton">
+                    Louis Vuitton
+                  </Link>
                 </li>
                 <li>
-                  <Link href="/pages/Designers">Marc Jacobs</Link>
+                  <Link href="/pages/DesignedByDesigner?designer=Marc-Jacobs">
+                    Marc Jacobs
+                  </Link>
                 </li>
                 <li>
-                  <Link href="/pages/Designers">
+                  <Link href="/pages/DesignedByDesigner?designer=Oscar-de-la-Renta">
                     Oscar de la Renta
                   </Link>
                 </li>
                 <li>
-                  <Link href="/pages/Designers">Prada</Link>
+                  <Link href="/pages/DesignedByDesigner?designer=Prada">
+                    Prada
+                  </Link>
                 </li>
 
                 {/* Collections Section */}
@@ -416,7 +441,7 @@ const Navbar = () => {
                 href="/pages/ClothShop"
                 onClick={(e) => {
                   e.stopPropagation();
-                  closeMenu();
+                  // closeMenu();
                 }}
               >
                 Clothing
@@ -501,7 +526,7 @@ const Navbar = () => {
                 href="/pages/JewelleryShop"
                 onClick={(e) => {
                   e.stopPropagation();
-                  closeMenu();
+                  // closeMenu();
                 }}
               >
                 Jewellery
@@ -569,8 +594,109 @@ const Navbar = () => {
             )}
           </li>
 
-          <li onClick={closeMenu}>
-            <Link href="/pages/Designers">Designers</Link>
+          {/* Replace this section: */}
+       
+
+          {/* With this expanded version: */}
+          <li className="mobileDropdownItem">
+            <div
+              className="mobileDropdownHeader"
+              onClick={(e) => {
+                e.stopPropagation();
+                setMobileFashionOpen(false);
+                setMobileAccessoriesOpen(false);
+                // Toggle designers dropdown
+                setMobileDesignersOpen(!mobileDesignersOpen);
+              }}
+            >
+              <Link
+                href="/"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  // closeMenu();
+                }}
+              >
+                Designers
+              </Link>
+              <span className="dropdownToggle">
+                {mobileDesignersOpen ? <FaChevronDown /> : <FaChevronRight />}
+              </span>
+            </div>
+
+            {mobileDesignersOpen && (
+              <div className="mobileDropdownContent">
+                <div className="mobileDropdownSection">
+                  <h3 className="mobileDropdownHeading">Our Favourites</h3>
+                  <ul className="mobileDropdownList">
+                    <li onClick={closeMenu}>
+                      <Link href="/pages/DesignedByDesigner?designer=Alexander-Wang">
+                        Alexander Wang
+                      </Link>
+                    </li>
+                    <li onClick={closeMenu}>
+                      <Link href="/pages/DesignedByDesigner?designer=Balenciaga">
+                        Balenciaga
+                      </Link>
+                    </li>
+                    <li onClick={closeMenu}>
+                      <Link href="/pages/DesignedByDesigner?designer=Dior">
+                        Dior
+                      </Link>
+                    </li>
+                    <li onClick={closeMenu}>
+                      <Link href="/pages/DesignedByDesigner?designer=Fendi">
+                        Fendi
+                      </Link>
+                    </li>
+                    <li onClick={closeMenu}>
+                      <Link href="/pages/DesignedByDesigner?designer=Gucci">
+                        Gucci
+                      </Link>
+                    </li>
+                    <li onClick={closeMenu}>
+                      <Link href="/pages/DesignedByDesigner?designer=Hermes">
+                        Hermes
+                      </Link>
+                    </li>
+                    <li onClick={closeMenu}>
+                      <Link href="/pages/DesignedByDesigner?designer=Isabel-Marant">
+                        Isabel Marant
+                      </Link>
+                    </li>
+                    <li onClick={closeMenu}>
+                      <Link href="/pages/DesignedByDesigner?designer=Jimmy-Choo">
+                        Jimmy Choo
+                      </Link>
+                    </li>
+                    <li onClick={closeMenu}>
+                      <Link href="/pages/DesignedByDesigner?designer=Kenzo">
+                        Kenzo
+                      </Link>
+                    </li>
+                    <li onClick={closeMenu}>
+                      <Link href="/pages/DesignedByDesigner?designer=Louis-Vuitton">
+                        Louis Vuitton
+                      </Link>
+                    </li>
+                    <li onClick={closeMenu}>
+                      <Link href="/pages/DesignedByDesigner?designer=Marc-Jacobs">
+                        Marc Jacobs
+                      </Link>
+                    </li>
+                    <li onClick={closeMenu}>
+                      <Link href="/pages/DesignedByDesigner?designer=Oscar-de-la-Renta">
+                        Oscar de la Renta
+                      </Link>
+                    </li>
+                    <li onClick={closeMenu}>
+                      <Link href="/pages/DesignedByDesigner?designer=Prada">
+                        Prada
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            )}
           </li>
 
           <li onClick={closeMenu}>

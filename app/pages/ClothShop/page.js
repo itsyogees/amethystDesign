@@ -4,9 +4,9 @@ import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 
 import { IoCartOutline } from "react-icons/io5";
- 
-import { FiSearch } from "react-icons/fi";
 
+import { FiSearch } from "react-icons/fi";
+import { FiChevronUp, FiChevronDown, FiChevronRight } from "react-icons/fi";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import Pagination from "@/app/utils/Pagenation/Pagenation";
 import { LuSettings2 } from "react-icons/lu";
@@ -317,327 +317,408 @@ const ClothShop = () => {
             <div
               className={`templatesFilter ${showFilter ? "visible" : "hidden"}`}
             >
-              {/* New Now Dropdown */}
-              <div className="templateFilterGroup">
-                <label
-                  className="templateFilterName"
-                  onClick={() => toggleFilter("NEW_NOW")}
-                  htmlFor="NEW_NOW"
-                >
-                  NEW NOW
-                  {/* <span>
-                    {openFilter === "NEW_NOW" ? (
-                      <IoIosArrowUp />
-                    ) : (
-                      <IoIosArrowDown />
-                    )}
-                  </span> */}
-                </label>
-                {openFilter === "NEW_NOW" && (
-                  <div className="templateCustomSelect">
-                    <ul className="templateDropdown">
-                      <li>
-                        Men
-                        {/* {openSubFilter === "MEN" && (
-                          <ul className="subDropdown">
-                            <li>All Clothing</li>
-                            <li>Kurta Sets</li>
-                            <li>Kurtas</li>
-                            <li>Sherwanis</li>
-                            <li>Bandhgalas</li>
-                            <li>Jackets</li>
-                            <li>Bottoms</li>
-                            <li>Shirts</li>
-                            <li>Pants</li>
-                            <li>Waist Coats</li>
-                            <li>View All</li>
-                          </ul>
-                        )} */}
-                      </li>
-                      <li>
-                        Women
-                        {/* {openSubFilter === "WOMEN" && (
-                          <ul className="subDropdown">
-                            <li>All Clothing</li>
-                            <li>Dresses</li>
-                            <li>Kurtas</li>
-                            <li>Tunics</li>
-                            <li>Lehengas</li>
-                            <li>Saris & Concept Saris</li>
-                            <li>Gowns</li>
-                            <li>Coordinate Sets</li>
-                            <li>Tops</li>
-                            <li>Capes & Cape Sets</li>
-                            <li>View All</li>
-                          </ul>
-                        )} */}
-                      </li>
-                    </ul>
+              {/* Search Input */}
+              <div className="filterinput">
+                <input type="text" placeholder="Search..." />
+                <FiSearch />
+              </div>
+
+              {/* Filter Groups */}
+              <div className="filterGroupsContainer">
+                <div className="templateFilterGroup">
+                  <div
+                    className="templateFilterHeader"
+                    onClick={() => toggleFilter("NEW_NOW")}
+                  >
+                    <label className="templateFilterName" htmlFor="NEW_NOW">
+                      NEW NOW
+                    </label>
+                    <span>
+                      {openFilter === "NEW_NOW" ? (
+                        <FiChevronUp />
+                      ) : (
+                        <FiChevronDown />
+                      )}
+                    </span>
                   </div>
-                )}
-              </div>
+                  {openFilter === "NEW_NOW" && (
+                    <div className="templateCustomSelect">
+                      <ul className="templateDropdown">
+                        <li className="dropdownItem">
+                          <div
+                            className="itemContent"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              toggleSubFilter("MEN");
+                            }}
+                          >
+                            Men
+                            <FiChevronRight className="submenuIcon" />
+                          </div>
+                          {openSubFilter === "MEN" && (
+                            <ul className="subDropdown">
+                              <li>All Clothing</li>
+                              <li>Kurta Sets</li>
+                              <li>Kurtas</li>
+                              <li>Sherwanis</li>
+                              <li>Bandhgalas</li>
+                              <li>Jackets</li>
+                              <li>Bottoms</li>
+                              <li>Shirts</li>
+                              <li>Pants</li>
+                              <li>Waist Coats</li>
+                              <li>View All</li>
+                            </ul>
+                          )}
+                        </li>
+                        <li className="dropdownItem">
+                          <div
+                            className="itemContent"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              toggleSubFilter("WOMEN");
+                            }}
+                          >
+                            Women
+                            <FiChevronRight className="submenuIcon" />
+                          </div>
+                          {openSubFilter === "WOMEN" && (
+                            <ul className="subDropdown">
+                              <li>All Clothing</li>
+                              <li>Dresses</li>
+                              <li>Kurtas</li>
+                              <li>Tunics</li>
+                              <li>Lehengas</li>
+                              <li>Saris & Concept Saris</li>
+                              <li>Gowns</li>
+                              <li>Coordinate Sets</li>
+                              <li>Tops</li>
+                              <li>Capes & Cape Sets</li>
+                              <li>View All</li>
+                            </ul>
+                          )}
+                        </li>
+                      </ul>
+                    </div>
+                  )}
+                </div>
 
-              {/* Women Dropdown */}
-              <div className="templateFilterGroup">
-                <label
-                  className="templateFilterName"
-                  onClick={() => toggleFilter("WOMEN")}
-                  htmlFor="WOMEN"
-                >
-                  WOMEN
-                  {/* <span>
-                    {openFilter === "WOMEN" ? (
-                      <IoIosArrowUp />
-                    ) : (
-                      <IoIosArrowDown />
-                    )}
-                  </span> */}
-                </label>
-                {openFilter === "WOMEN" && (
-                  <div className="templateCustomSelect">
-                    <ul className="templateDropdown">
-                      <li>All Clothing</li>
-                      <li>Dresses</li>
-                      <li>Kurtas</li>
-                      <li>Tunics</li>
-                      <li>Lehengas</li>
-                      <li>Saris & Concept Saris</li>
-                      <li>Gowns</li>
-                      <li>Coordinate Sets</li>
-                      <li>Tops</li>
-                      <li>Capes & Cape Sets</li>
-                      <li>View All</li>
-                    </ul>
+                {/* Women Dropdown */}
+                <div className="templateFilterGroup">
+                  <div
+                    className="templateFilterHeader"
+                    onClick={() => toggleFilter("WOMEN")}
+                  >
+                    <label className="templateFilterName" htmlFor="WOMEN">
+                      WOMEN
+                    </label>
+                    <span>
+                      {openFilter === "WOMEN" ? (
+                        <FiChevronUp />
+                      ) : (
+                        <FiChevronDown />
+                      )}
+                    </span>
                   </div>
-                )}
-              </div>
-
-              {/* Men Dropdown */}
-              <div className="templateFilterGroup">
-                <label
-                  className="templateFilterName"
-                  onClick={() => toggleFilter("MEN")}
-                  htmlFor="MEN"
-                >
-                  MEN
-                  {/* <span>
-                    {openFilter === "MEN" ? (
-                      <IoIosArrowUp />
-                    ) : (
-                      <IoIosArrowDown />
-                    )}
-                  </span> */}
-                </label>
-                {openFilter === "MEN" && (
-                  <div className="templateCustomSelect">
-                    <ul className="templateDropdown">
-                      <li>All Clothing</li>
-                      <li>Kurta Sets</li>
-                      <li>Kurtas</li>
-                      <li>Sherwanis</li>
-                      <li>Bandhgalas</li>
-                      <li>Jackets</li>
-                      <li>Bottoms</li>
-                      <li>Shirts</li>
-                      <li>Pants</li>
-                      <li>Waist Coats</li>
-                      <li>View All</li>
-                    </ul>
+                  {openFilter === "WOMEN" && (
+                    <div className="templateCustomSelect">
+                      <ul className="templateDropdown">
+                        <li className="dropdownItem">
+                          <div
+                            className="itemContent"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              toggleSubFilter("MEN_CLOTHING");
+                            }}
+                          >
+                            Clothing
+                            <FiChevronRight className="submenuIcon" />
+                          </div>
+                          {openSubFilter === "MEN_CLOTHING" && (
+                            <ul className="subDropdown">
+                              <li>All Clothing</li>
+                              <li>Kurta Sets</li>
+                              <li>Kurtas</li>
+                              <li>Sherwanis</li>
+                              <li>Bandhgalas</li>
+                              <li>Jackets</li>
+                              <li>Bottoms</li>
+                              <li>Shirts</li>
+                              <li>Pants</li>
+                              <li>Waist Coats</li>
+                            </ul>
+                          )}
+                        </li>
+                        <li className="dropdownItem">
+                          <div
+                            className="itemContent"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              toggleSubFilter("MEN_ACCESSORIES");
+                            }}
+                          >
+                            Accessories
+                            <FiChevronRight className="submenuIcon" />
+                          </div>
+                          {openSubFilter === "MEN_ACCESSORIES" && (
+                            <ul className="subDropdown">
+                              <li>All Accessories</li>
+                              <li>Footwear</li>
+                              <li>Belts</li>
+                              <li>Watches</li>
+                              <li>Bags</li>
+                            </ul>
+                          )}
+                        </li>
+                        <li>View All</li>
+                      </ul>
+                    </div>
+                  )}
+                </div>
+                {/* MEN Dropdown with Sub-filters */}
+                <div className="templateFilterGroup">
+                  <div
+                    className="templateFilterHeader"
+                    onClick={() => toggleFilter("MEN")}
+                  >
+                    <label className="templateFilterName" htmlFor="MEN">
+                      MEN
+                    </label>
+                    <span>
+                      {openFilter === "MEN" ? (
+                        <FiChevronUp />
+                      ) : (
+                        <FiChevronDown />
+                      )}
+                    </span>
                   </div>
-                )}
-              </div>
-              {/* Jewellery Dropdown */}
-              <div className="templateFilterGroup">
-                <label
-                  className="templateFilterName"
-                  onClick={() => toggleFilter("JEWELLERY")}
-                  htmlFor="JEWELLERY"
-                >
-                  JEWELLERY
-                  {/* <span>
-                    {openFilter === "JEWELLERY" ? (
-                      <IoIosArrowUp />
-                    ) : (
-                      <IoIosArrowDown />
-                    )}
-                  </span> */}
-                </label>
-                {openFilter === "JEWELLERY" && (
-                  <div className="templateCustomSelect">
-                    <ul className="templateDropdown">
-                      <li>Necklace Sets</li>
-                      <li>Necklaces</li>
-                      <li>Bracelets</li>
-                      <li>Rings</li>
-                      <li>Earrings</li>
-                      <li>Hair Accessories</li>
-                      <li>Nose Accessories</li>
-                      <li>All Jewellery</li>
-                    </ul>
+                  {openFilter === "MEN" && (
+                    <div className="templateCustomSelect">
+                      <ul className="templateDropdown">
+                        <li className="dropdownItem">
+                          <div
+                            className="itemContent"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              toggleSubFilter("MEN_CLOTHING");
+                            }}
+                          >
+                            Clothing
+                            <FiChevronRight className="submenuIcon" />
+                          </div>
+                          {openSubFilter === "MEN_CLOTHING" && (
+                            <ul className="subDropdown">
+                              <li>All Clothing</li>
+                              <li>Kurta Sets</li>
+                              <li>Kurtas</li>
+                              <li>Sherwanis</li>
+                              <li>Bandhgalas</li>
+                              <li>Jackets</li>
+                              <li>Bottoms</li>
+                              <li>Shirts</li>
+                              <li>Pants</li>
+                              <li>Waist Coats</li>
+                            </ul>
+                          )}
+                        </li>
+                        <li className="dropdownItem">
+                          <div
+                            className="itemContent"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              toggleSubFilter("MEN_ACCESSORIES");
+                            }}
+                          >
+                            Accessories
+                            <FiChevronRight className="submenuIcon" />
+                          </div>
+                          {openSubFilter === "MEN_ACCESSORIES" && (
+                            <ul className="subDropdown">
+                              <li>All Accessories</li>
+                              <li>Footwear</li>
+                              <li>Belts</li>
+                              <li>Watches</li>
+                              <li>Bags</li>
+                            </ul>
+                          )}
+                        </li>
+                        <li>View All</li>
+                      </ul>
+                    </div>
+                  )}
+                </div>
+
+                {/* JEWELLERY Dropdown with Sub-filters */}
+                <div className="templateFilterGroup">
+                  <div
+                    className="templateFilterHeader"
+                    onClick={() => toggleFilter("JEWELLERY")}
+                  >
+                    <label className="templateFilterName" htmlFor="JEWELLERY">
+                      JEWELLERY
+                    </label>
+                    <span>
+                      {openFilter === "JEWELLERY" ? (
+                        <FiChevronUp />
+                      ) : (
+                        <FiChevronDown />
+                      )}
+                    </span>
                   </div>
-                )}
-              </div>
-              <div className="templateFilterGroup">
-                <label
-                  className="templateFilterName"
-                  onClick={() => toggleFilter("ACCESSORIES")}
-                  htmlFor="ACCESSORIES"
-                >
-                  ACCESSORIES
-                  {/* <span>
-                    {openFilter === "ACCESSORIES" ? (
-                      <IoIosArrowUp />
-                    ) : (
-                      <IoIosArrowDown />
-                    )}
-                  </span> */}
-                </label>
-                {openFilter === "ACCESSORIES" && (
-                  <div className="templateCustomSelect">
-                    <ul className="templateDropdown">
-                      <li>Bags</li>
-                      <li>Belts</li>
-                      <li>Footwear</li>
-                      <li>All Accessories</li>
-                    </ul>
+                  {openFilter === "JEWELLERY" && (
+                    <div className="templateCustomSelect">
+                      <ul className="templateDropdown">
+                        <li className="dropdownItem">
+                          <div
+                            className="itemContent"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              toggleSubFilter("WOMEN_JEWELLERY");
+                            }}
+                          >
+                            Women's Jewellery
+                            <FiChevronRight className="submenuIcon" />
+                          </div>
+                          {openSubFilter === "WOMEN_JEWELLERY" && (
+                            <ul className="subDropdown">
+                              <li>Necklace Sets</li>
+                              <li>Necklaces</li>
+                              <li>Bracelets</li>
+                              <li>Rings</li>
+                              <li>Earrings</li>
+                              <li>Hair Accessories</li>
+                            </ul>
+                          )}
+                        </li>
+                        <li className="dropdownItem">
+                          <div
+                            className="itemContent"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              toggleSubFilter("MEN_JEWELLERY");
+                            }}
+                          >
+                            Men's Jewellery
+                            <FiChevronRight className="submenuIcon" />
+                          </div>
+                          {openSubFilter === "MEN_JEWELLERY" && (
+                            <ul className="subDropdown">
+                              <li>Bracelets</li>
+                              <li>Rings</li>
+                              <li>Cufflinks</li>
+                              <li>Pendants</li>
+                            </ul>
+                          )}
+                        </li>
+                        <li>View All</li>
+                      </ul>
+                    </div>
+                  )}
+                </div>
+
+                {/* ACCESSORIES Dropdown with Sub-filters */}
+                <div className="templateFilterGroup">
+                  <div
+                    className="templateFilterHeader"
+                    onClick={() => toggleFilter("ACCESSORIES")}
+                  >
+                    <label className="templateFilterName" htmlFor="ACCESSORIES">
+                      ACCESSORIES
+                    </label>
+                    <span>
+                      {openFilter === "ACCESSORIES" ? (
+                        <FiChevronUp />
+                      ) : (
+                        <FiChevronDown />
+                      )}
+                    </span>
                   </div>
-                )}
-              </div>
-              {/* Other Dropdowns */}
-              <div className="templateFilterGroup">
-                <label
-                  className="templateFilterName"
-                  onClick={() => toggleFilter("EID")}
-                  htmlFor="EID"
-                >
-                  EID
-                  {/* <span>
-                    {openFilter === "EID" ? (
-                      <IoIosArrowUp />
-                    ) : (
-                      <IoIosArrowDown />
-                    )}
-                  </span> */}
-                </label>
-              </div>
+                  {openFilter === "ACCESSORIES" && (
+                    <div className="templateCustomSelect">
+                      <ul className="templateDropdown">
+                        <li className="dropdownItem">
+                          <div
+                            className="itemContent"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              toggleSubFilter("BAGS");
+                            }}
+                          >
+                            Bags
+                            <FiChevronRight className="submenuIcon" />
+                          </div>
+                          {openSubFilter === "BAGS" && (
+                            <ul className="subDropdown">
+                              <li>Handbags</li>
+                              <li>Clutches</li>
+                              <li>Totes</li>
+                              <li>Backpacks</li>
+                            </ul>
+                          )}
+                        </li>
+                        <li className="dropdownItem">
+                          <div
+                            className="itemContent"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              toggleSubFilter("FOOTWEAR");
+                            }}
+                          >
+                            Footwear
+                            <FiChevronRight className="submenuIcon" />
+                          </div>
+                          {openSubFilter === "FOOTWEAR" && (
+                            <ul className="subDropdown">
+                              <li>Heels</li>
+                              <li>Flats</li>
+                              <li>Sandals</li>
+                              <li>Boots</li>
+                            </ul>
+                          )}
+                        </li>
+                        <li>View All</li>
+                      </ul>
+                    </div>
+                  )}
+                </div>
 
-              <div className="templateFilterGroup">
-                <label
-                  className="templateFilterName"
-                  onClick={() => toggleFilter("DESIGNERS")}
-                  htmlFor="DESIGNERS"
-                >
-                  DESIGNERS
-                  {/* <span>
-                    {openFilter === "DESIGNERS" ? (
-                      <IoIosArrowUp />
-                    ) : (
-                      <IoIosArrowDown />
-                    )}
-                  </span> */}
-                </label>
-              </div>
+                {/* DESIGNERS Dropdown (no sub-filters) */}
+                <div className="templateFilterGroup">
+                  <div
+                    className="templateFilterHeader"
+                    onClick={() => toggleFilter("DESIGNERS")}
+                  >
+                    <label className="templateFilterName" htmlFor="DESIGNERS">
+                      DESIGNERS
+                    </label>
+                    <span>
+                      {openFilter === "DESIGNERS" ? (
+                        <FiChevronUp />
+                      ) : (
+                        <FiChevronDown />
+                      )}
+                    </span>
+                  </div>
+                  {openFilter === "DESIGNERS" && (
+                    <div className="templateCustomSelect">
+                      <ul className="templateDropdown">
+                        <li>Designer 1</li>
+                        <li>Designer 2</li>
+                        <li>Designer 3</li>
+                        <li>View All</li>
+                      </ul>
+                    </div>
+                  )}
+                </div>
 
-              <div className="templateFilterGroup">
-                <label
-                  className="templateFilterName"
-                  onClick={() => toggleFilter("CURATED_FOR_YOU")}
-                  htmlFor="CURATED_FOR_YOU"
-                >
-                  CURATED FOR YOU
-                  {/* <span>
-                    {openFilter === "CURATED_FOR_YOU" ? (
-                      <IoIosArrowUp />
-                    ) : (
-                      <IoIosArrowDown />
-                    )}
-                  </span> */}
-                </label>
-              </div>
-
-              <div className="templateFilterGroup">
-                <label
-                  className="templateFilterName"
-                  onClick={() => toggleFilter("CELEBRITY_STYLES")}
-                  htmlFor="CELEBRITY_STYLES"
-                >
-                  CELEBRITY STYLES
-                  {/* <span>
-                    {openFilter === "CELEBRITY_STYLES" ? (
-                      <IoIosArrowUp />
-                    ) : (
-                      <IoIosArrowDown />
-                    )}
-                  </span> */}
-                </label>
-              </div>
-
-              <div className="templateFilterGroup">
-                <label
-                  className="templateFilterName"
-                  onClick={() => toggleFilter("WEDDING")}
-                  htmlFor="WEDDING"
-                >
-                  WEDDING
-                  {/* <span>
-                    {openFilter === "WEDDING" ? (
-                      <IoIosArrowUp />
-                    ) : (
-                      <IoIosArrowDown />
-                    )}
-                  </span> */}
-                </label>
-              </div>
-
-              <div className="templateFilterGroup">
-                <label
-                  className="templateFilterName"
-                  onClick={() => toggleFilter("READY_TO_SHIP")}
-                  htmlFor="READY_TO_SHIP"
-                >
-                  READY TO SHIP
-                  {/* <span>
-                    {openFilter === "READY_TO_SHIP" ? (
-                      <IoIosArrowUp />
-                    ) : (
-                      <IoIosArrowDown />
-                    )}
-                  </span> */}
-                </label>
-              </div>
-
-              <div className="templateFilterGroup">
-                <label
-                  className="templateFilterName"
-                  onClick={() => toggleFilter("SALE")}
-                  htmlFor="SALE"
-                >
-                  SALE
-                  {/* <span>
-                    {openFilter === "SALE" ? (
-                      <IoIosArrowUp />
-                    ) : (
-                      <IoIosArrowDown />
-                    )}
-                  </span> */}
-                </label>
-              </div>
-
-              <div className="templateFilterGroup">
-                <label
-                  className="templateFilterName"
-                  onClick={() => toggleFilter("CONTACT_US")}
-                  htmlFor="CONTACT_US"
-                >
-                  CONTACT US
-                  {/* <span>
-                    {openFilter === "CONTACT_US" ? (
-                      <IoIosArrowUp />
-                    ) : (
-                      <IoIosArrowDown />
-                    )}
-                  </span> */}
-                </label>
+                {/* CONTACT US (no dropdown) */}
+                <div className="templateFilterGroup">
+                  <div className="templateFilterHeader">
+                    <label className="templateFilterName" htmlFor="CONTACT_US">
+                      CONTACT US
+                    </label>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -647,7 +728,6 @@ const ClothShop = () => {
                   <div
                     key={item.id}
                     className="tabCard"
-                    
                     onMouseEnter={() => handleMouseEnter(item.id)}
                     onMouseLeave={handleMouseLeave}
                   >
@@ -671,9 +751,8 @@ const ClothShop = () => {
                     <p>{item.title}</p>
                     <span>{item.modal}</span>
                     <div className="tabPrice" onClick={handleCardClick}>
-
                       <p>{item.oldPrice}</p>
-                     
+
                       <p>{item.nexPrice}</p>
                     </div>
                   </div>
