@@ -175,12 +175,12 @@ const ClothShop = () => {
 
   const [scrollPosition, setScrollPosition] = useState(0);
   const imagesSmall = [
-    "/image/bannerslider1.png",
-    "/image/bannerslider2.png",
-    "/image/bannerslider3.png",
-    "/image/bannerslider4.png",
-    "/image/bannerslider5.png",
-    "/image/bannerslider1.png",
+    "/image/clothimg1.png",
+    "/image/clothimg2.png",
+    "/image/clothimg3.png",
+    "/image/clothimg4.png",
+    "/image/clothimg5.png",
+    "/image/clothimg1.png",
   ];
   const slideWidth = 20; // Width of each slide in percentage (100% / 5 images = 20%)
   const maxScroll = (imagesSmall.length - 5) * slideWidth; // Maximum scroll position

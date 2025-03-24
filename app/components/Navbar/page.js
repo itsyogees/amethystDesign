@@ -148,7 +148,7 @@ const Navbar = () => {
       >
         <ul className="navList">
           <li>
-            <Link href="/">Just In</Link>
+            <Link href="/">Home</Link>
           </li>
           <li
             onMouseEnter={toggleFashionDropdown}
@@ -321,7 +321,7 @@ const Navbar = () => {
             )}
           </li>
           <li>
-            <Link href="/">Designers</Link>
+            <Link href="/pages/Designers">Designers</Link>
           </li>
 
           <li>
@@ -354,7 +354,7 @@ const Navbar = () => {
             <Link href="/">Home</Link>
           </li>
           <li onClick={closeMenu}>
-            <Link href="/">Just In</Link>
+            <Link href="/">Home</Link>
           </li>
 
           {/* Clothing with dropdown */}
@@ -515,7 +515,7 @@ Clothing
           </li>
 
           <li onClick={closeMenu}>
-            <Link href="/">Designers</Link>
+            <Link href="/pages/Designers">Designers</Link>
           </li>
 
           <li onClick={closeMenu}>

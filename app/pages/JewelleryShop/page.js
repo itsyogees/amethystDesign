@@ -2,10 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { FaRegHeart } from "react-icons/fa";
-import { CiShare2 } from "react-icons/ci";
-import { LiaRetweetSolid } from "react-icons/lia";
-import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
+
 import { FiSearch } from "react-icons/fi";
 import { LuSettings2 } from "react-icons/lu";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
