@@ -6521,6 +6521,9 @@ body.menu-open::after {
         font-weight: 400;
         color: rgb(44, 44, 44);
         margin-bottom: 1rem;
+        @media (max-width:500px) {
+          font-size: 1.3rem;
+        }
       }
       .btn-shoppage {
         font-family: "Montserrat", sans-serif;
