@@ -44,6 +44,9 @@ const JewelleryShop = () => {
   const handleCardClick = () => {
     router.push("/pages/JewelleryShop/ViewJewelleryDetails");
   };
+  const handleViewProduct = () => {
+    router.push("/pages/Cart");
+  };
 
   const collections = [
     {
@@ -721,37 +724,40 @@ const JewelleryShop = () => {
             <div className="templateCards">
               <div className="templateCardsContent">
                 {currentItems.map((item) => (
-                  <div
-                    key={item.id}
-                    className="tabCard"
-                    onMouseEnter={() => handleMouseEnter(item.id)}
-                    onMouseLeave={handleMouseLeave}
-                  >
-                    <div className="image-container">
-                      <img
-                        src={item.image}
-                        alt={item.title}
-                        className="templatecardImage"
-                      />
-                      {hoveredCard === item.id && (
-                        <div className="add-to-cart-overlay">
-                          <div className="specialy-img-content">
-                            <Link href="/pages/Cart">
-                              <p>Add to Cart</p>
-                            </Link>
-                            <IoCartOutline />
-                          </div>
-                        </div>
-                      )}
+                <div
+                key={item.id}
+                className="tabCard"
+                onMouseEnter={() => handleMouseEnter(item.id)}
+                onMouseLeave={handleMouseLeave}
+                onClick={handleCardClick} // This handles clicking anywhere on the card
+              >
+                <div className="image-container">
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="templatecardImage"
+                  />
+                  {hoveredCard === item.id && (
+                    <div 
+                      className="add-to-cart-overlay"
+                      onClick={(e) => {
+                        e.stopPropagation(); // This prevents the card click from firing
+                        handleViewProduct();
+                      }}
+                    >
+                      <div className="specialy-img-content">
+                        <p>Add to Cart</p>
+                        <IoCartOutline />
+                      </div>
                     </div>
-                    <p>{item.title}</p>
-                    {/* <span>{item.modal}</span> */}
-                    <div className="tabPrice" onClick={handleCardClick}>
-                      <p>{item.oldPrice}</p>
-
-                      <p>{item.nexPrice}</p>
-                    </div>
-                  </div>
+                  )}
+                </div>
+                <p>{item.title}</p>
+                <div className="tabPrice">
+                  <p>{item.oldPrice}</p>
+                  <p>{item.nexPrice}</p>
+                </div>
+              </div>
                 ))}
               </div>
               {/* Pagination Component */}

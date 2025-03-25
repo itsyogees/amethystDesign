@@ -11,12 +11,12 @@ import { LuSettings2 } from "react-icons/lu";
 import { useRouter } from "next/navigation";
 const DesignedByDesigner = () => {
   const searchParams = useSearchParams();
-  const designerParam = searchParams.get('designer');
-  
+  const designerParam = searchParams.get("designer");
+
   // Decode and clean up the designer name
-  const designerName = designerParam 
-    ? decodeURIComponent(designerParam).replace(/-/g, ' ')
-    : '';
+  const designerName = designerParam
+    ? decodeURIComponent(designerParam).replace(/-/g, " ")
+    : "";
   const [openFilter, setOpenFilter] = useState("CATEGORIES");
   const [openSubFilter, setOpenSubFilter] = useState("dogs");
   const [price, setPrice] = useState(30); // Default price value
@@ -93,8 +93,6 @@ const DesignedByDesigner = () => {
       oldPrice: "$600",
       nexPrice: "$500",
     },
-   
-  
   ];
 
   const [showFilter, setShowFilter] = useState(false);
@@ -280,7 +278,7 @@ const DesignedByDesigner = () => {
         </div>
         <div className="shoppageContent">
           <div className="templatesContent">
-          <div
+            <div
               className={`templatesFilter ${showFilter ? "visible" : "hidden"}`}
             >
               {/* Search Input */}

@@ -14,6 +14,9 @@ const ViewJewelleryDetails = () => {
   const handleCardClick = () => {
     router.push("/pages/Cart");
   };
+  const handleAllProductClick = () => {
+    router.push("/pages/JewelleryShop");
+  };
   const initialImages = [
     "/image/shop1.jpeg",
     "/image/shop2.jpeg",
@@ -174,11 +177,12 @@ const ViewJewelleryDetails = () => {
       </div>
       <div className="shoppage-might">
           <div className="shoppage-might-head">
-            <h2>You Might Also Like</h2>
+          <h2>We're saving these for you</h2>
+          <button className="btn-shoppage" onClick={handleAllProductClick}>View All</button>
           </div>
           <div className="home-specialty-content">
           <div className="home-specialty-img">
-              <img src="/image/Specialty1.png" alt="" />
+              <img src="/image/shop4.jpeg" alt="" />
               <div className="specialy-img-content">
                 <p>Demo Product Name</p>
                 <span>$500</span>
@@ -189,7 +193,7 @@ const ViewJewelleryDetails = () => {
               </div>
             </div>
             <div className="home-specialty-img">
-              <img src="/image/Specialty2.png" alt="" />
+              <img src="/image/newcollection2.jpg" alt="" />
               <div className="specialy-img-content">
                 <p>Demo Product Name</p>
                 <span>$500</span>
@@ -200,7 +204,7 @@ const ViewJewelleryDetails = () => {
               </div>
             </div>
             <div className="home-specialty-img">
-              <img src="/image/Specialty3.png" alt="" />
+              <img src="/image/newarr3.jpg" alt="" />
               <div className="specialy-img-content">
                 <p>Demo Product Name</p>
                 <span>$500</span>
@@ -211,7 +215,7 @@ const ViewJewelleryDetails = () => {
               </div>
             </div>
             <div className="home-specialty-img">
-              <img src="/image/Specialty4.png" alt="" />
+              <img src="/image/shop3.jpeg" alt="" />
               <div className="specialy-img-content">
                 <p>Demo Product Name</p>
                 <span>$500</span>

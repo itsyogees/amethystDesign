@@ -430,9 +430,7 @@ const Navbar = () => {
           <li onClick={closeMenu}>
             <Link href="/">Home</Link>
           </li>
-          <li onClick={closeMenu}>
-            <Link href="/">Home</Link>
-          </li>
+          
 
           {/* Clothing with dropdown */}
           <li className="mobileDropdownItem">

@@ -15,6 +15,9 @@ const ViewClothDetails = () => {
   const handleCardClick = () => {
     router.push("/pages/Cart");
   };
+  const handleAllProductClick = () => {
+    router.push("/pages/ClothShop");
+  };
   const initialImages = [
     "/image/Specialty11.png",
     "/image/Specialty12.png",
@@ -171,9 +174,10 @@ const ViewClothDetails = () => {
         </div>
       </div>
       <div className="shoppage-might">
-        <div className="shoppage-might-head">
-          <h2>You Might Also Like</h2>
-        </div>
+      <div className="shoppage-might-head">
+          <h2>We're saving these for you</h2>
+          <button className="btn-shoppage" onClick={handleAllProductClick}>View All</button>
+          </div>
         <div className="home-specialty-content">
           <div className="home-specialty-img">
             <img src="/image/Specialty5.jpeg" alt="" />
