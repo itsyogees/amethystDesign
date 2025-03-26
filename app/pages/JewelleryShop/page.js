@@ -12,7 +12,7 @@ import { useRouter } from "next/navigation";
 import Pagination from "@/app/utils/Pagenation/Pagenation";
 
 const JewelleryShop = () => {
-  const [openFilter, setOpenFilter] = useState("CATEGORIES");
+  const [openFilter, setOpenFilter] = useState("DESIGNER");
   const [openSubFilter, setOpenSubFilter] = useState("dogs");
   const [price, setPrice] = useState(30); // Default price value
   const router = useRouter();
@@ -193,6 +193,32 @@ const JewelleryShop = () => {
   const handleScrollRight = () => {
     setScrollPosition((prev) => Math.min(prev + slideWidth, maxScroll));
   };
+
+  const handleClearAllFilters = () => {
+    // Clear search input
+    const searchInput = document.querySelector(".filterinput input");
+    if (searchInput) searchInput.value = "";
+
+    // Clear all checkboxes
+    const checkboxes = document.querySelectorAll(
+      '.filterOptions input[type="checkbox"]'
+    );
+    checkboxes.forEach((checkbox) => {
+      checkbox.checked = false;
+    });
+
+    // Clear all radio buttons (if you uncomment the sort section)
+    const radios = document.querySelectorAll(
+      '.filterOptions input[type="radio"]'
+    );
+    radios.forEach((radio) => {
+      radio.checked = false;
+    });
+
+    // You might also want to reset any state variables you're using for filters
+    // setSelectedFilters({});
+    // setSortBy('latest');
+  };
   return (
     <div className="shoppage">
       {/* <div className="shop-banner">
@@ -315,449 +341,353 @@ const JewelleryShop = () => {
         </div>
         <div className="shoppageContent">
           <div className="templatesContent">
-          <div className={`templatesFilter ${showFilter ? "visible" : "hidden"}`}>
-  {/* Search Input */}
-  <div className="filterinput">
-    <input type="text" placeholder="Search..." />
-    <FiSearch />
-  </div>
-
-  {/* Filter Groups */}
-  <div className="filterGroupsContainer">
-  <div className="templateFilterGroup">
-      <div 
-        className="templateFilterHeader"
-        onClick={() => toggleFilter("NEW_NOW")}
-      >
-        <label className="templateFilterName" htmlFor="NEW_NOW">
-          NEW NOW
-        </label>
-        <span>
-          {openFilter === "NEW_NOW" ? (
-            <FiChevronUp />
-          ) : (
-            <FiChevronDown />
-          )}
-        </span>
-      </div>
-      {openFilter === "NEW_NOW" && (
-        <div className="templateCustomSelect">
-          <ul className="templateDropdown">
-            <li className="dropdownItem">
-              <div 
-                className="itemContent"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  toggleSubFilter("MEN");
-                }}
-              >
-                Men
-                <FiChevronRight className="submenuIcon" />
-              </div>
-              {openSubFilter === "MEN" && (
-                <ul className="subDropdown">
-                  <li>All Clothing</li>
-                  <li>Kurta Sets</li>
-                  <li>Kurtas</li>
-                  <li>Sherwanis</li>
-                  <li>Bandhgalas</li>
-                  <li>Jackets</li>
-                  <li>Bottoms</li>
-                  <li>Shirts</li>
-                  <li>Pants</li>
-                  <li>Waist Coats</li>
-                  <li>View All</li>
-                </ul>
-              )}
-            </li>
-            <li className="dropdownItem">
-              <div 
-                className="itemContent"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  toggleSubFilter("WOMEN");
-                }}
-              >
-                Women
-                <FiChevronRight className="submenuIcon" />
-              </div>
-              {openSubFilter === "WOMEN" && (
-                <ul className="subDropdown">
-                  <li>All Clothing</li>
-                  <li>Dresses</li>
-                  <li>Kurtas</li>
-                  <li>Tunics</li>
-                  <li>Lehengas</li>
-                  <li>Saris & Concept Saris</li>
-                  <li>Gowns</li>
-                  <li>Coordinate Sets</li>
-                  <li>Tops</li>
-                  <li>Capes & Cape Sets</li>
-                  <li>View All</li>
-                </ul>
-              )}
-            </li>
-          </ul>
-        </div>
-      )}
-    </div>
-
-    {/* Women Dropdown */}
-    <div className="templateFilterGroup">
-      <div 
-        className="templateFilterHeader"
-        onClick={() => toggleFilter("WOMEN")}
-      >
-        <label className="templateFilterName" htmlFor="WOMEN">
-          WOMEN
-        </label>
-        <span>
-          {openFilter === "WOMEN" ? (
-            <FiChevronUp />
-          ) : (
-            <FiChevronDown />
-          )}
-        </span>
-      </div>
-      {openFilter === "WOMEN" && (
-        <div className="templateCustomSelect">
-        <ul className="templateDropdown">
-          <li className="dropdownItem">
-            <div 
-              className="itemContent"
-              onClick={(e) => {
-                e.stopPropagation();
-                toggleSubFilter("MEN_CLOTHING");
-              }}
+            <div
+              className={`templatesFilter ${showFilter ? "visible" : "hidden"}`}
             >
-              Clothing
-              <FiChevronRight className="submenuIcon" />
+              {/* Search Input */}
+              <div className="filterinput">
+                <input type="text" placeholder="Search..." />
+                <FiSearch />
+              </div>
+              <div className="clearAllButtonContainer">
+                <button
+                  className="clearAllButton"
+                  onClick={handleClearAllFilters}
+                >
+                  Clear All Filters
+                </button>
+              </div>
+              {/* Sort Section */}
+              {/* <div className="filterGroup">
+                <h3 className="filterGroupTitle">SORT</h3>
+                <div className="filterOptions">
+                  <label className="filterOption">
+                    <input
+                      type="radio"
+                      name="sort"
+                      value="latest"
+                      defaultChecked
+                    />
+                    <span>Latest</span>
+                  </label>
+                  <label className="filterOption">
+                    <input type="radio" name="sort" value="price-low-high" />
+                    <span>Price: Low to High</span>
+                  </label>
+                  <label className="filterOption">
+                    <input type="radio" name="sort" value="price-high-low" />
+                    <span>Price: High to Low</span>
+                  </label>
+                  <label className="filterOption">
+                    <input type="radio" name="sort" value="popularity" />
+                    <span>Popularity</span>
+                  </label>
+                </div>
+              </div> */}
+
+              {/* Filters Section */}
+              <div className="filterGroup">
+                <h3 className="filterGroupTitle">FILTERS BY</h3>
+
+                {/* Designer Filter */}
+                <div className="filterSubGroup">
+                  <div
+                    className="filterSubHeader"
+                    onClick={() => toggleFilter("DESIGNER")}
+                  >
+                    <span>Designer</span>
+                    {openFilter === "DESIGNER" ? (
+                      <FiChevronUp />
+                    ) : (
+                      <FiChevronDown />
+                    )}
+                  </div>
+                  {openFilter === "DESIGNER" && (
+                    <div className="filterOptions">
+                      {[
+                        "Bhavya Ramesh",
+                        "Earumme",
+                        "House Of Tuhina",
+                        "Manner",
+                        "Preeti Mohan",
+                        "Raabta By Rahul",
+                        "Rozana By Zariin",
+                        "Sangeeta Boochra",
+                        "Studio Kassa",
+                        "Suhani Pittie",
+                      ].map((designer) => (
+                        <label key={designer} className="filterOption">
+                          <input
+                            type="checkbox"
+                            name="designer"
+                            value={designer}
+                          />
+                          <span>{designer}</span>
+                        </label>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                {/* Category Filter */}
+                <div className="filterSubGroup">
+                  <div
+                    className="filterSubHeader"
+                    onClick={() => toggleFilter("CATEGORY")}
+                  >
+                    <span>Category</span>
+                    {openFilter === "CATEGORY" ? (
+                      <FiChevronUp />
+                    ) : (
+                      <FiChevronDown />
+                    )}
+                  </div>
+                  {openFilter === "CATEGORY" && (
+                    <div className="filterOptions">
+                      {[
+                        "Necklaces",
+                        "Earrings",
+                        "Bracelets",
+                        "Rings",
+                        "Anklets",
+                        "Home Jewellery",
+                        "Pendants",
+                        "Brooches",
+                      ].map((category) => (
+                        <label key={category} className="filterOption">
+                          <input
+                            type="checkbox"
+                            name="category"
+                            value={category}
+                          />
+                          <span>{category}</span>
+                        </label>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                {/* Occasion Filter */}
+                <div className="filterSubGroup">
+                  <div
+                    className="filterSubHeader"
+                    onClick={() => toggleFilter("OCCASION")}
+                  >
+                    <span>Occasion</span>
+                    {openFilter === "OCCASION" ? (
+                      <FiChevronUp />
+                    ) : (
+                      <FiChevronDown />
+                    )}
+                  </div>
+                  {openFilter === "OCCASION" && (
+                    <div className="filterOptions">
+                      {[
+                        "Wedding",
+                        "Bridal",
+                        "Engagement",
+                        "Party",
+                        "Casual",
+                        "Festive",
+                        "Formal",
+                        "Everyday",
+                      ].map((occasion) => (
+                        <label key={occasion} className="filterOption">
+                          <input
+                            type="checkbox"
+                            name="occasion"
+                            value={occasion}
+                          />
+                          <span>{occasion}</span>
+                        </label>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                {/* Price Filter */}
+                <div className="filterSubGroup">
+                  <div
+                    className="filterSubHeader"
+                    onClick={() => toggleFilter("PRICE")}
+                  >
+                    <span>Price</span>
+                    {openFilter === "PRICE" ? (
+                      <FiChevronUp />
+                    ) : (
+                      <FiChevronDown />
+                    )}
+                  </div>
+                  {openFilter === "PRICE" && (
+                    <div className="filterOptions">
+                      {[
+                        "Under ₹1000",
+                        "₹1000 - ₹3000",
+                        "₹3000 - ₹5000",
+                        "₹5000 - ₹10000",
+                        "Above ₹10000",
+                      ].map((priceRange) => (
+                        <label key={priceRange} className="filterOption">
+                          <input
+                            type="checkbox"
+                            name="price"
+                            value={priceRange}
+                          />
+                          <span>{priceRange}</span>
+                        </label>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                {/* Material Filter */}
+                <div className="filterSubGroup">
+                  <div
+                    className="filterSubHeader"
+                    onClick={() => toggleFilter("MATERIAL")}
+                  >
+                    <span>Material</span>
+                    {openFilter === "MATERIAL" ? (
+                      <FiChevronUp />
+                    ) : (
+                      <FiChevronDown />
+                    )}
+                  </div>
+                  {openFilter === "MATERIAL" && (
+                    <div className="filterOptions">
+                      {[
+                        "Gold",
+                        "Silver",
+                        "Platinum",
+                        "Diamond",
+                        "Pearl",
+                        "Gemstone",
+                        "Oxidized",
+                        "Kundan",
+                        "Polki",
+                      ].map((material) => (
+                        <label key={material} className="filterOption">
+                          <input
+                            type="checkbox"
+                            name="material"
+                            value={material}
+                          />
+                          <span>{material}</span>
+                        </label>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                {/* Color Filter */}
+                <div className="filterSubGroup">
+                  <div
+                    className="filterSubHeader"
+                    onClick={() => toggleFilter("COLOR")}
+                  >
+                    <span>Color</span>
+                    {openFilter === "COLOR" ? (
+                      <FiChevronUp />
+                    ) : (
+                      <FiChevronDown />
+                    )}
+                  </div>
+                  {openFilter === "COLOR" && (
+                    <div className="filterOptions">
+                      {[
+                        "Gold",
+                        "Silver",
+                        "Rose Gold",
+                        "Black",
+                        "White",
+                        "Multi-color",
+                        "Green",
+                        "Blue",
+                        "Red",
+                      ].map((color) => (
+                        <label key={color} className="filterOption">
+                          <input type="checkbox" name="color" value={color} />
+                          <span>{color}</span>
+                        </label>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                {/* Shipping Filter */}
+                <div className="filterSubGroup">
+                  <div
+                    className="filterSubHeader"
+                    onClick={() => toggleFilter("SHIPPING")}
+                  >
+                    <span>Shipped In</span>
+                    {openFilter === "SHIPPING" ? (
+                      <FiChevronUp />
+                    ) : (
+                      <FiChevronDown />
+                    )}
+                  </div>
+                  {openFilter === "SHIPPING" && (
+                    <div className="filterOptions">
+                      {[
+                        "1-3 Days",
+                        "3-7 Days",
+                        "7-14 Days",
+                        "14-21 Days",
+                        "Ready to Ship",
+                      ].map((shipping) => (
+                        <label key={shipping} className="filterOption">
+                          <input
+                            type="checkbox"
+                            name="shipping"
+                            value={shipping}
+                          />
+                          <span>{shipping}</span>
+                        </label>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
             </div>
-            {openSubFilter === "MEN_CLOTHING" && (
-              <ul className="subDropdown">
-                <li>All Clothing</li>
-                <li>Kurta Sets</li>
-                <li>Kurtas</li>
-                <li>Sherwanis</li>
-                <li>Bandhgalas</li>
-                <li>Jackets</li>
-                <li>Bottoms</li>
-                <li>Shirts</li>
-                <li>Pants</li>
-                <li>Waist Coats</li>
-              </ul>
-            )}
-          </li>
-          <li className="dropdownItem">
-            <div 
-              className="itemContent"
-              onClick={(e) => {
-                e.stopPropagation();
-                toggleSubFilter("MEN_ACCESSORIES");
-              }}
-            >
-              Accessories
-              <FiChevronRight className="submenuIcon" />
-            </div>
-            {openSubFilter === "MEN_ACCESSORIES" && (
-              <ul className="subDropdown">
-                <li>All Accessories</li>
-                <li>Footwear</li>
-                <li>Belts</li>
-                <li>Watches</li>
-                <li>Bags</li>
-              </ul>
-            )}
-          </li>
-          <li>View All</li>
-        </ul>
-      </div>
-      )}
-    </div>
-    {/* MEN Dropdown with Sub-filters */}
-    <div className="templateFilterGroup">
-      <div 
-        className="templateFilterHeader"
-        onClick={() => toggleFilter("MEN")}
-      >
-        <label className="templateFilterName" htmlFor="MEN">
-          MEN
-        </label>
-        <span>
-          {openFilter === "MEN" ? (
-            <FiChevronUp />
-          ) : (
-            <FiChevronDown />
-          )}
-        </span>
-      </div>
-      {openFilter === "MEN" && (
-        <div className="templateCustomSelect">
-          <ul className="templateDropdown">
-            <li className="dropdownItem">
-              <div 
-                className="itemContent"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  toggleSubFilter("MEN_CLOTHING");
-                }}
-              >
-                Clothing
-                <FiChevronRight className="submenuIcon" />
-              </div>
-              {openSubFilter === "MEN_CLOTHING" && (
-                <ul className="subDropdown">
-                  <li>All Clothing</li>
-                  <li>Kurta Sets</li>
-                  <li>Kurtas</li>
-                  <li>Sherwanis</li>
-                  <li>Bandhgalas</li>
-                  <li>Jackets</li>
-                  <li>Bottoms</li>
-                  <li>Shirts</li>
-                  <li>Pants</li>
-                  <li>Waist Coats</li>
-                </ul>
-              )}
-            </li>
-            <li className="dropdownItem">
-              <div 
-                className="itemContent"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  toggleSubFilter("MEN_ACCESSORIES");
-                }}
-              >
-                Accessories
-                <FiChevronRight className="submenuIcon" />
-              </div>
-              {openSubFilter === "MEN_ACCESSORIES" && (
-                <ul className="subDropdown">
-                  <li>All Accessories</li>
-                  <li>Footwear</li>
-                  <li>Belts</li>
-                  <li>Watches</li>
-                  <li>Bags</li>
-                </ul>
-              )}
-            </li>
-            <li>View All</li>
-          </ul>
-        </div>
-      )}
-    </div>
-
-    {/* JEWELLERY Dropdown with Sub-filters */}
-    <div className="templateFilterGroup">
-      <div 
-        className="templateFilterHeader"
-        onClick={() => toggleFilter("JEWELLERY")}
-      >
-        <label className="templateFilterName" htmlFor="JEWELLERY">
-          JEWELLERY
-        </label>
-        <span>
-          {openFilter === "JEWELLERY" ? (
-            <FiChevronUp />
-          ) : (
-            <FiChevronDown />
-          )}
-        </span>
-      </div>
-      {openFilter === "JEWELLERY" && (
-        <div className="templateCustomSelect">
-          <ul className="templateDropdown">
-            <li className="dropdownItem">
-              <div 
-                className="itemContent"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  toggleSubFilter("WOMEN_JEWELLERY");
-                }}
-              >
-                Women's Jewellery
-                <FiChevronRight className="submenuIcon" />
-              </div>
-              {openSubFilter === "WOMEN_JEWELLERY" && (
-                <ul className="subDropdown">
-                  <li>Necklace Sets</li>
-                  <li>Necklaces</li>
-                  <li>Bracelets</li>
-                  <li>Rings</li>
-                  <li>Earrings</li>
-                  <li>Hair Accessories</li>
-                </ul>
-              )}
-            </li>
-            <li className="dropdownItem">
-              <div 
-                className="itemContent"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  toggleSubFilter("MEN_JEWELLERY");
-                }}
-              >
-                Men's Jewellery
-                <FiChevronRight className="submenuIcon" />
-              </div>
-              {openSubFilter === "MEN_JEWELLERY" && (
-                <ul className="subDropdown">
-                  <li>Bracelets</li>
-                  <li>Rings</li>
-                  <li>Cufflinks</li>
-                  <li>Pendants</li>
-                </ul>
-              )}
-            </li>
-            <li>View All</li>
-          </ul>
-        </div>
-      )}
-    </div>
-
-    {/* ACCESSORIES Dropdown with Sub-filters */}
-    <div className="templateFilterGroup">
-      <div 
-        className="templateFilterHeader"
-        onClick={() => toggleFilter("ACCESSORIES")}
-      >
-        <label className="templateFilterName" htmlFor="ACCESSORIES">
-          ACCESSORIES
-        </label>
-        <span>
-          {openFilter === "ACCESSORIES" ? (
-            <FiChevronUp />
-          ) : (
-            <FiChevronDown />
-          )}
-        </span>
-      </div>
-      {openFilter === "ACCESSORIES" && (
-        <div className="templateCustomSelect">
-          <ul className="templateDropdown">
-            <li className="dropdownItem">
-              <div 
-                className="itemContent"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  toggleSubFilter("BAGS");
-                }}
-              >
-                Bags
-                <FiChevronRight className="submenuIcon" />
-              </div>
-              {openSubFilter === "BAGS" && (
-                <ul className="subDropdown">
-                  <li>Handbags</li>
-                  <li>Clutches</li>
-                  <li>Totes</li>
-                  <li>Backpacks</li>
-                </ul>
-              )}
-            </li>
-            <li className="dropdownItem">
-              <div 
-                className="itemContent"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  toggleSubFilter("FOOTWEAR");
-                }}
-              >
-                Footwear
-                <FiChevronRight className="submenuIcon" />
-              </div>
-              {openSubFilter === "FOOTWEAR" && (
-                <ul className="subDropdown">
-                  <li>Heels</li>
-                  <li>Flats</li>
-                  <li>Sandals</li>
-                  <li>Boots</li>
-                </ul>
-              )}
-            </li>
-            <li>View All</li>
-          </ul>
-        </div>
-      )}
-    </div>
-
-    {/* DESIGNERS Dropdown (no sub-filters) */}
-    <div className="templateFilterGroup">
-      <div 
-        className="templateFilterHeader"
-        onClick={() => toggleFilter("DESIGNERS")}
-      >
-        <label className="templateFilterName" htmlFor="DESIGNERS">
-          DESIGNERS
-        </label>
-        <span>
-          {openFilter === "DESIGNERS" ? (
-            <FiChevronUp />
-          ) : (
-            <FiChevronDown />
-          )}
-        </span>
-      </div>
-      {openFilter === "DESIGNERS" && (
-        <div className="templateCustomSelect">
-          <ul className="templateDropdown">
-            <li>Designer 1</li>
-            <li>Designer 2</li>
-            <li>Designer 3</li>
-            <li>View All</li>
-          </ul>
-        </div>
-      )}
-    </div>
-
-    {/* CONTACT US (no dropdown) */}
-    <div className="templateFilterGroup">
-      <div className="templateFilterHeader">
-        <label className="templateFilterName" htmlFor="CONTACT_US">
-          CONTACT US
-        </label>
-      </div>
-    </div>
-  </div>
-</div>
 
             <div className="templateCards">
               <div className="templateCardsContent">
                 {currentItems.map((item) => (
-                <div
-                key={item.id}
-                className="tabCard"
-                onMouseEnter={() => handleMouseEnter(item.id)}
-                onMouseLeave={handleMouseLeave}
-                onClick={handleCardClick} // This handles clicking anywhere on the card
-              >
-                <div className="image-container">
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="templatecardImage"
-                  />
-                  {hoveredCard === item.id && (
-                    <div 
-                      className="add-to-cart-overlay"
-                      onClick={(e) => {
-                        e.stopPropagation(); // This prevents the card click from firing
-                        handleViewProduct();
-                      }}
-                    >
-                      <div className="specialy-img-content">
-                        <p>Add to Cart</p>
-                        <IoCartOutline />
-                      </div>
+                  <div
+                    key={item.id}
+                    className="tabCard"
+                    onMouseEnter={() => handleMouseEnter(item.id)}
+                    onMouseLeave={handleMouseLeave}
+                    onClick={handleCardClick} // This handles clicking anywhere on the card
+                  >
+                    <div className="image-container">
+                      <img
+                        src={item.image}
+                        alt={item.title}
+                        className="templatecardImage"
+                      />
+                      {hoveredCard === item.id && (
+                        <div
+                          className="add-to-cart-overlay"
+                          onClick={(e) => {
+                            e.stopPropagation(); // This prevents the card click from firing
+                            handleViewProduct();
+                          }}
+                        >
+                          <div className="specialy-img-content">
+                            <p>Add to Cart</p>
+                            <IoCartOutline />
+                          </div>
+                        </div>
+                      )}
                     </div>
-                  )}
-                </div>
-                <p>{item.title}</p>
-                <div className="tabPrice">
-                  <p>{item.oldPrice}</p>
-                  <p>{item.nexPrice}</p>
-                </div>
-              </div>
+                    <p>{item.title}</p>
+                    <div className="tabPrice">
+                      <p>{item.oldPrice}</p>
+                      <p>{item.nexPrice}</p>
+                    </div>
+                  </div>
                 ))}
               </div>
               {/* Pagination Component */}
